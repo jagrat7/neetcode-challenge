@@ -1,7 +1,8 @@
 import { Button } from "@my-better-t-app/ui/components/button"
 import { CyberGlitchText } from "@my-better-t-app/ui/components/ui/cyber-glitch-text"
 import { LogoSlider } from "@my-better-t-app/ui/components/ui/logo-slider"
-import { TypingAnimation } from "@my-better-t-app/ui/components/typing-animation"
+import { CodeSectionBlock } from "../components/dark-desgin/code-section-block"
+import { HeroCodeIntro } from "../components/dark-desgin/hero-code-intro"
 import {
   Rocket,
   Check,
@@ -179,63 +180,55 @@ function HeroSection() {
           <span className="text-xs" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace" }}>current</span>
         </div>
 
-        <div
-          className="mb-2 flex items-center justify-center gap-1 text-[11px]"
-          style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
-        >
-          <span style={{ color: DSA.visited }}>const</span>
-          <span style={{ color: DSA.fg }}>platform</span>
-          <span>=</span>
-          <span style={{ color: DSA.visited }}>new</span>
-          <TypingAnimation className="leading-none tracking-normal" duration={24} showCursor={false}>
-            {"NeetCode({ mode: \"interview\" })"}
-          </TypingAnimation>
-        </div>
-        <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1]" style={{ fontFamily: "JetBrains Mono, monospace" }}>
-          <CyberGlitchText text="NeetCode" className="text-[#06B6D4]" />
-        </h1>
-        <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8, fontFamily: "JetBrains Mono, monospace" }}>
-          <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>A Better Way to Prepare
-        </p>
-        <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed" style={{ color: DSA.muted }}>
-          Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.
-        </p>
+        <HeroCodeIntro currentColor={DSA.current} fgColor={DSA.fg} keywordColor={DSA.visited} mutedColor={DSA.muted}>
+          <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1]" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+            <CyberGlitchText text="NeetCode" className="text-[#06B6D4]" />
+          </h1>
+          <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8, fontFamily: "JetBrains Mono, monospace" }}>
+            <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>A Better Way to Prepare
+          </p>
+          <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed" style={{ color: DSA.muted }}>
+            Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.
+          </p>
 
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <Button size="lg" className="px-8 text-sm" style={{ backgroundColor: DSA.visited, color: DSA.bg, fontWeight: 700, borderRadius: "8px" }}>
-            <Rocket className="size-4" />
-            Get Pro
-          </Button>
-          <Button size="lg" className="px-8 text-sm" style={{ backgroundColor: "transparent", border: `1px solid ${DSA.fg}30`, color: DSA.fg, borderRadius: "8px" }}>
-            Start Free
-          </Button>
-        </div>
-
-        {/* Binary tree stats */}
-        <div className="mx-auto mt-20">
-          <div className="mb-2 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
-              {"BinaryTree<Stat>.inorder()"}
-            </TypingAnimation>
+          <div className="mt-10 flex items-center justify-center gap-4">
+            <Button size="lg" className="px-8 text-sm" style={{ backgroundColor: DSA.visited, color: DSA.bg, fontWeight: 700, borderRadius: "8px" }}>
+              <Rocket className="size-4" />
+              Get Pro
+            </Button>
+            <Button size="lg" className="px-8 text-sm" style={{ backgroundColor: "transparent", border: `1px solid ${DSA.fg}30`, color: DSA.fg, borderRadius: "8px" }}>
+              Start Free
+            </Button>
           </div>
-          <svg viewBox="0 0 400 140" className="mx-auto h-36 w-full max-w-md" fill="none">
-            {/* Root */}
-            <circle cx="200" cy="30" r="28" fill={`${DSA.visited}15`} stroke={DSA.visited} strokeWidth="2" />
-            <text x="200" y="27" textAnchor="middle" fill={DSA.visited} fontSize="14" fontWeight="700" fontFamily="JetBrains Mono">1M+</text>
-            <text x="200" y="40" textAnchor="middle" fill={DSA.muted} fontSize="8" fontFamily="JetBrains Mono">engineers</text>
-            {/* Edges */}
-            <line x1="178" y1="52" x2="120" y2="80" stroke={DSA.border} strokeWidth="1.5" />
-            <line x1="222" y1="52" x2="280" y2="80" stroke={DSA.border} strokeWidth="1.5" />
-            {/* Left child */}
-            <circle cx="110" cy="100" r="24" fill={`${DSA.queued}15`} stroke={DSA.queued} strokeWidth="2" />
-            <text x="110" y="97" textAnchor="middle" fill={DSA.queued} fontSize="12" fontWeight="700" fontFamily="JetBrains Mono">1K+</text>
-            <text x="110" y="109" textAnchor="middle" fill={DSA.muted} fontSize="7" fontFamily="JetBrains Mono">problems</text>
-            {/* Right child */}
-            <circle cx="290" cy="100" r="24" fill={`${DSA.current}15`} stroke={DSA.current} strokeWidth="2" />
-            <text x="290" y="97" textAnchor="middle" fill={DSA.current} fontSize="12" fontWeight="700" fontFamily="JetBrains Mono">500+</text>
-            <text x="290" y="109" textAnchor="middle" fill={DSA.muted} fontSize="7" fontFamily="JetBrains Mono">videos</text>
-          </svg>
-        </div>
+
+          {/* Binary tree stats */}
+          <CodeSectionBlock
+            className="mx-auto mt-20"
+            duration={18}
+            label="BinaryTree<Stat>.inorder()"
+            labelClassName="mb-2 text-center text-[10px]"
+            labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+            offsetY={12}
+          >
+            <svg viewBox="0 0 400 140" className="mx-auto h-36 w-full max-w-md" fill="none">
+              {/* Root */}
+              <circle cx="200" cy="30" r="28" fill={`${DSA.visited}15`} stroke={DSA.visited} strokeWidth="2" />
+              <text x="200" y="27" textAnchor="middle" fill={DSA.visited} fontSize="14" fontWeight="700" fontFamily="JetBrains Mono">1M+</text>
+              <text x="200" y="40" textAnchor="middle" fill={DSA.muted} fontSize="8" fontFamily="JetBrains Mono">engineers</text>
+              {/* Edges */}
+              <line x1="178" y1="52" x2="120" y2="80" stroke={DSA.border} strokeWidth="1.5" />
+              <line x1="222" y1="52" x2="280" y2="80" stroke={DSA.border} strokeWidth="1.5" />
+              {/* Left child */}
+              <circle cx="110" cy="100" r="24" fill={`${DSA.queued}15`} stroke={DSA.queued} strokeWidth="2" />
+              <text x="110" y="97" textAnchor="middle" fill={DSA.queued} fontSize="12" fontWeight="700" fontFamily="JetBrains Mono">1K+</text>
+              <text x="110" y="109" textAnchor="middle" fill={DSA.muted} fontSize="7" fontFamily="JetBrains Mono">problems</text>
+              {/* Right child */}
+              <circle cx="290" cy="100" r="24" fill={`${DSA.current}15`} stroke={DSA.current} strokeWidth="2" />
+              <text x="290" y="97" textAnchor="middle" fill={DSA.current} fontSize="12" fontWeight="700" fontFamily="JetBrains Mono">500+</text>
+              <text x="290" y="109" textAnchor="middle" fill={DSA.muted} fontSize="7" fontFamily="JetBrains Mono">videos</text>
+            </svg>
+          </CodeSectionBlock>
+        </HeroCodeIntro>
       </div>
     </section>
   )
@@ -291,12 +284,13 @@ function CompanyLogosSection() {
 
   return (
     <section className="px-6 py-14" style={{ backgroundColor: DSA.bg }}>
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-2 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-          <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
-            {"Set<Company>.values()"}
-          </TypingAnimation>
-        </div>
+      <CodeSectionBlock
+        className="mx-auto max-w-5xl"
+        duration={18}
+        label="Set<Company>.values()"
+        labelClassName="mb-2 text-center text-[10px]"
+        labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+      >
         <p className="mb-6 text-center text-sm" style={{ color: DSA.muted }}>Trusted by engineers who landed offers at top companies</p>
         {/* Set: unordered unique elements */}
         <LogoSlider
@@ -307,11 +301,9 @@ function CompanyLogosSection() {
           className="[&_li.logo-slider__item]:w-[104px] sm:[&_li.logo-slider__item]:w-[116px] lg:[&_li.logo-slider__item]:w-[124px]"
         />
         <p className="mt-3 text-center text-[9px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-          <TypingAnimation className="leading-none tracking-normal" duration={16} showCursor={false}>
-            {"// order not guaranteed, all elements unique"}
-          </TypingAnimation>
+          // order not guaranteed, all elements unique
         </p>
-      </div>
+      </CodeSectionBlock>
     </section>
   )
 }
@@ -319,13 +311,14 @@ function CompanyLogosSection() {
 function TestimonialsSection() {
   return (
     <section className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
-      <div className="mx-auto max-w-5xl">
+      <CodeSectionBlock
+        className="mx-auto max-w-5xl"
+        duration={18}
+        label="PriorityQueue<Review>.poll()"
+        labelClassName="mb-1 text-[10px]"
+        labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+      >
         <div className="mb-8">
-          <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
-              {"PriorityQueue<Review>.poll()"}
-            </TypingAnimation>
-          </div>
           <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
             <CyberGlitchText text="Testimonials" scrambleOnMount={false} className="text-[#E6EDF3]" />
           </h2>
@@ -364,7 +357,7 @@ function TestimonialsSection() {
             </div>
           ))}
         </div>
-      </div>
+      </CodeSectionBlock>
     </section>
   )
 }
@@ -372,13 +365,14 @@ function TestimonialsSection() {
 function CoursesSection() {
   return (
     <section id="courses" className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
-      <div className="mx-auto max-w-5xl">
+      <CodeSectionBlock
+        className="mx-auto max-w-5xl"
+        duration={18}
+        label="HashMap<Category, Course[]>.entries()"
+        labelClassName="mb-1 text-[10px]"
+        labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+      >
         <div className="mb-12">
-          <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
-              {"HashMap<Category, Course[]>.entries()"}
-            </TypingAnimation>
-          </div>
           <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
             <CyberGlitchText text="Courses" scrambleOnMount={false} className="text-[#E6EDF3]" />
           </h2>
@@ -393,9 +387,7 @@ function CoursesSection() {
               <div className="hidden w-44 shrink-0 md:block">
                 <div className="sticky top-20 rounded-lg p-3" style={{ backgroundColor: DSA.card, border: `1px solid ${DSA.border}` }}>
                   <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-                    <TypingAnimation className="leading-none tracking-normal" duration={14} showCursor={false}>
-                      {`hash(${ci}) ->`}
-                    </TypingAnimation>
+                    {`hash(${ci}) ->`}
                   </div>
                   <div className="text-sm font-bold" style={{ color: DSA.current }}>{cat.title}</div>
                   <p className="mt-1 text-[11px]" style={{ color: DSA.muted }}>{cat.description}</p>
@@ -443,7 +435,7 @@ function CoursesSection() {
             </div>
           ))}
         </div>
-      </div>
+      </CodeSectionBlock>
     </section>
   )
 }
@@ -451,13 +443,14 @@ function CoursesSection() {
 function PracticeSection() {
   return (
     <section id="practice" className="px-6 py-16" style={{ backgroundColor: DSA.bg, borderTop: `1px solid ${DSA.border}` }}>
-      <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2">
+      <CodeSectionBlock
+        className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2"
+        duration={26}
+        label="function startPractice(): void {"
+        labelClassName="mb-1 text-[10px] lg:col-span-2"
+        labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+      >
         <div>
-          <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            <TypingAnimation className="leading-none tracking-normal" duration={26} showCursor={false}>
-              {"function startPractice(): void {"}
-            </TypingAnimation>
-          </div>
           <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
             <CyberGlitchText text="Start Practicing for Free" scrambleOnMount={false} className="text-[#E6EDF3]" />
           </h2>
@@ -540,7 +533,7 @@ function PracticeSection() {
             </div>
           </div>
         </div>
-      </div>
+      </CodeSectionBlock>
     </section>
   )
 }
@@ -548,7 +541,13 @@ function PracticeSection() {
 function FounderSection() {
   return (
     <section className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
-      <div className="mx-auto max-w-3xl">
+      <CodeSectionBlock
+        className="mx-auto max-w-3xl"
+        duration={26}
+        label="class Founder implements Engineer {"
+        labelClassName="mb-1 text-[10px]"
+        labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+      >
         {/* Timeline as linked list */}
         <div className="flex flex-col items-center gap-8 md:flex-row md:items-start">
           <div className="relative shrink-0">
@@ -560,11 +559,6 @@ function FounderSection() {
             </div>
           </div>
           <div>
-            <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-              <TypingAnimation className="leading-none tracking-normal" duration={26} showCursor={false}>
-                {"class Founder implements Engineer {"}
-              </TypingAnimation>
-            </div>
             <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
               <CyberGlitchText text="Hi, I'm Navi" scrambleOnMount={false} className="text-[#E6EDF3]" />
             </h2>
@@ -592,7 +586,7 @@ function FounderSection() {
             </div>
           </div>
         </div>
-      </div>
+      </CodeSectionBlock>
     </section>
   )
 }

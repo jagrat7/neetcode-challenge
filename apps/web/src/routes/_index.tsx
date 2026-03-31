@@ -1,5 +1,4 @@
 import type { Route } from "./+types/_index"
-import { GridBackground } from "../components/root-desgin/layout"
 import { HeroSection } from "@/components/root-desgin/hero"
 import { ArrayTopicStrip } from "@/components/root-desgin/array-topic-strip"
 import { CompanyLogosSection } from "@/components/root-desgin/company-logos-section"
@@ -21,7 +20,6 @@ export function meta({}: Route.MetaArgs) {
 export default function WhiteboardLanding() {
   return (
     <div className="relative min-h-screen bg-[#FAFAFA] text-[#1E293B]" style={{ fontFamily: "Inter, sans-serif" }}>
-      <GridBackground />
       <div className="relative z-10">
         <Navbar />
         <main>

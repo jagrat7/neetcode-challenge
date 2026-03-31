@@ -1,13 +1,17 @@
 import { Button } from "@my-better-t-app/ui/components/button"
 import { Rocket } from "lucide-react"
-import { BinaryTreeSketch } from "./binary-tree"
+import { InteractiveGridPattern } from "@my-better-t-app/ui/components/interactive-grid-pattern"
 import { Squiggle } from "./layout"
 
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden px-6 pb-32 pt-24 md:pt-36">
-      <BinaryTreeSketch />
-      <div className="relative mx-auto max-w-3xl">
+      <InteractiveGridPattern
+        squares={[30, 20]}
+        className="pointer-events-auto opacity-60 [mask-image:radial-gradient(ellipse_at_center,white_40%,transparent_80%)]"
+        squaresClassName="stroke-[#2563EB]/10 hover:fill-[#2563EB]/15"
+      />
+      <div className="pointer-events-none relative mx-auto max-w-3xl">
         <div className="text-center">
           <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[0.95] text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>
             <span className="relative inline-block">
@@ -24,11 +28,11 @@ export function HeroSection() {
         </div>
 
         <div className="mt-10 flex items-center justify-center gap-4">
-          <Button size="lg" className="rounded-none border-2 border-[#2563EB] bg-[#2563EB] px-8 text-white shadow-[3px_3px_0px_#1E293B] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#1E293B]">
+          <Button size="lg" className="pointer-events-auto rounded-none border-2 border-[#2563EB] bg-[#2563EB] px-8 text-white shadow-[3px_3px_0px_#1E293B] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#1E293B]">
             <Rocket className="size-4" />
             Get Pro
           </Button>
-          <Button variant="outline" size="lg" className="rounded-none border-2 border-[#1E293B] px-8 text-[#1E293B] hover:bg-[#1E293B]/5">
+          <Button variant="outline" size="lg" className="pointer-events-auto rounded-none border-2 border-[#1E293B] px-8 text-[#1E293B] hover:bg-[#1E293B]/5">
             Start Free
           </Button>
         </div>
