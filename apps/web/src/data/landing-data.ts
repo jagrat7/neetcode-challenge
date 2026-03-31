@@ -193,7 +193,7 @@ export const VALUE_PROPS = [
 ]
 
 export const FOUNDER_COMPANIES = [
-  { name: "Google", logo: "/images/logos/google.svg" },
-  { name: "Amazon", logo: "/images/logos/amazon.png" },
   { name: "Capital One", logo: "/images/logos/capital-one.png" },
+  { name: "Amazon", logo: "/images/logos/amazon.png" },
+  { name: "Google", logo: "/images/logos/google.svg" },
 ]

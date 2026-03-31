@@ -24,7 +24,7 @@ export default function WhiteboardLanding() {
         <Navbar />
         <main>
           <HeroSection />
-          <ArrayTopicStrip />
+          {/* <ArrayTopicStrip /> */}
           <CompanyLogosSection />
           <TestimonialsSection />
           <FeaturesSection />
