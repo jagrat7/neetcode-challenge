@@ -1,1 +1,28 @@
 @import "@my-better-t-app/ui/globals.css";
+
+@keyframes logo-slider-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-slider__container {
+  overflow: hidden;
+}
+
+.logo-slider__track {
+  animation: logo-slider-marquee calc(var(--speed, 30) * 1s) linear infinite;
+  will-change: transform;
+}
+
+.logo-slider__container[data-direction="right"] .logo-slider__track {
+  animation-direction: reverse;
+}
+
+.logo-slider__container[data-pause-on-hover="true"]:hover .logo-slider__track {
+  animation-play-state: paused;
+}

@@ -1,4 +1,7 @@
 import { Button } from "@my-better-t-app/ui/components/button"
+import { CyberGlitchText } from "@my-better-t-app/ui/components/ui/cyber-glitch-text"
+import { LogoSlider } from "@my-better-t-app/ui/components/ui/logo-slider"
+import { TypingAnimation } from "@my-better-t-app/ui/components/typing-animation"
 import {
   Rocket,
   Check,
@@ -143,7 +146,7 @@ function Navbar() {
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
             <img src="/images/brand/neetcode-logo.png" alt="NeetCode" className="size-8" />
-            <span className="text-lg font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>NeetCode</span>
+            <CyberGlitchText text="NeetCode" scrambleOnMount={false} className="text-lg font-bold text-[#E6EDF3] [font-family:'JetBrains_Mono',monospace]" />
           </div>
           <div className="hidden items-center gap-6 md:flex">
             {["Courses", "Practice", "Roadmap"].map((link) => (
@@ -176,11 +179,20 @@ function HeroSection() {
           <span className="text-xs" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace" }}>current</span>
         </div>
 
-        <div className="mb-2 text-[11px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-          const platform = new <span style={{ color: DSA.current }}>NeetCode</span>()
+        <div
+          className="mb-2 flex items-center justify-center gap-1 text-[11px]"
+          style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
+        >
+          <span style={{ color: DSA.visited }}>const</span>
+          <span style={{ color: DSA.fg }}>platform</span>
+          <span>=</span>
+          <span style={{ color: DSA.visited }}>new</span>
+          <TypingAnimation className="leading-none tracking-normal" duration={24} showCursor={false}>
+            {"NeetCode({ mode: \"interview\" })"}
+          </TypingAnimation>
         </div>
-        <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1]" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>
-          <span style={{ color: DSA.current }}>NeetCode</span>
+        <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1]" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+          <CyberGlitchText text="NeetCode" className="text-[#06B6D4]" />
         </h1>
         <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8, fontFamily: "JetBrains Mono, monospace" }}>
           <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>A Better Way to Prepare
@@ -202,7 +214,9 @@ function HeroSection() {
         {/* Binary tree stats */}
         <div className="mx-auto mt-20">
           <div className="mb-2 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            BinaryTree&lt;Stat&gt;.inorder()
+            <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
+              {"BinaryTree<Stat>.inorder()"}
+            </TypingAnimation>
           </div>
           <svg viewBox="0 0 400 140" className="mx-auto h-36 w-full max-w-md" fill="none">
             {/* Root */}
@@ -262,28 +276,40 @@ function HeroSection() {
 // }
 
 function CompanyLogosSection() {
+  const logos = [...COMPANIES, ...COMPANIES].map((company, index) => (
+    <div
+      key={`${company.name}-${index}`}
+      className="group flex items-center justify-center px-1.5 py-2 opacity-85 transition-all duration-300 hover:opacity-100"
+    >
+      <img
+        src={company.logo}
+        alt={company.name}
+        className="h-7 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+      />
+    </div>
+  ))
+
   return (
     <section className="px-6 py-14" style={{ backgroundColor: DSA.bg }}>
       <div className="mx-auto max-w-5xl">
         <div className="mb-2 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-          Set&lt;Company&gt;.values()
+          <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
+            {"Set<Company>.values()"}
+          </TypingAnimation>
         </div>
         <p className="mb-6 text-center text-sm" style={{ color: DSA.muted }}>Trusted by engineers who landed offers at top companies</p>
         {/* Set: unordered unique elements */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          {COMPANIES.map((c) => (
-            <div
-              key={c.name}
-              className="flex items-center gap-2 rounded-lg px-4 py-2.5 transition-all duration-300 hover:scale-105"
-              style={{ border: `1.5px solid ${DSA.border}`, backgroundColor: `${DSA.card}80` }}
-            >
-              <img src={c.logo} alt={c.name} className="size-5 object-contain" />
-              <span className="text-sm" style={{ color: DSA.fg }}>{c.name}</span>
-            </div>
-          ))}
-        </div>
+        <LogoSlider
+          logos={logos}
+          speed={28}
+          showBlur={false}
+          pauseOnHover
+          className="[&_li.logo-slider__item]:w-[104px] sm:[&_li.logo-slider__item]:w-[116px] lg:[&_li.logo-slider__item]:w-[124px]"
+        />
         <p className="mt-3 text-center text-[9px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-          // order not guaranteed, all elements unique
+          <TypingAnimation className="leading-none tracking-normal" duration={16} showCursor={false}>
+            {"// order not guaranteed, all elements unique"}
+          </TypingAnimation>
         </p>
       </div>
     </section>
@@ -296,9 +322,13 @@ function TestimonialsSection() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-8">
           <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            PriorityQueue&lt;Review&gt;.poll()
+            <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
+              {"PriorityQueue<Review>.poll()"}
+            </TypingAnimation>
           </div>
-          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Testimonials</h2>
+          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+            <CyberGlitchText text="Testimonials" scrambleOnMount={false} className="text-[#E6EDF3]" />
+          </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {TESTIMONIALS.map((t, ti) => (
@@ -345,9 +375,13 @@ function CoursesSection() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-12">
           <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            HashMap&lt;Category, Course[]&gt;.entries()
+            <TypingAnimation className="leading-none tracking-normal" duration={18} showCursor={false}>
+              {"HashMap<Category, Course[]>.entries()"}
+            </TypingAnimation>
           </div>
-          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Courses</h2>
+          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+            <CyberGlitchText text="Courses" scrambleOnMount={false} className="text-[#E6EDF3]" />
+          </h2>
           <p className="mt-2" style={{ color: DSA.muted }}>Structured learning paths from fundamentals to advanced topics.</p>
         </div>
 
@@ -359,7 +393,9 @@ function CoursesSection() {
               <div className="hidden w-44 shrink-0 md:block">
                 <div className="sticky top-20 rounded-lg p-3" style={{ backgroundColor: DSA.card, border: `1px solid ${DSA.border}` }}>
                   <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-                    hash({ci}) →
+                    <TypingAnimation className="leading-none tracking-normal" duration={14} showCursor={false}>
+                      {`hash(${ci}) ->`}
+                    </TypingAnimation>
                   </div>
                   <div className="text-sm font-bold" style={{ color: DSA.current }}>{cat.title}</div>
                   <p className="mt-1 text-[11px]" style={{ color: DSA.muted }}>{cat.description}</p>
@@ -418,9 +454,13 @@ function PracticeSection() {
       <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2">
         <div>
           <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-            function startPractice(): void {"{"}
+            <TypingAnimation className="leading-none tracking-normal" duration={26} showCursor={false}>
+              {"function startPractice(): void {"}
+            </TypingAnimation>
           </div>
-          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Start Practicing for Free</h2>
+          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+            <CyberGlitchText text="Start Practicing for Free" scrambleOnMount={false} className="text-[#E6EDF3]" />
+          </h2>
           <p className="mt-3" style={{ color: DSA.muted }}>The best resources for coding interviews. Period.</p>
           <ul className="mt-6 space-y-3">
             {VALUE_PROPS.map((prop, pi) => (
@@ -521,9 +561,13 @@ function FounderSection() {
           </div>
           <div>
             <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-              class Founder implements Engineer {"{"}
+              <TypingAnimation className="leading-none tracking-normal" duration={26} showCursor={false}>
+                {"class Founder implements Engineer {"}
+              </TypingAnimation>
             </div>
-            <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Hi, I'm Navi</h2>
+            <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+              <CyberGlitchText text="Hi, I'm Navi" scrambleOnMount={false} className="text-[#E6EDF3]" />
+            </h2>
             <div className="mt-4 space-y-3 text-sm leading-relaxed" style={{ color: DSA.muted }}>
               <p><span className="text-[9px]" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>// 2020 </span>I created NeetCode in 2020 when I was unemployed and couldn't find a job.</p>
               <p>While I was struggling myself, it was still rewarding for me to make videos. I received so many messages from others who got jobs after studying with my videos.</p>
