@@ -16,6 +16,10 @@ interface TimedRevealProps {
 interface SectionCodeRevealProps {
   children: ReactNode
   className?: string
+  closingText?: string
+  closingTextClassName?: string
+  closingTextStyle?: CSSProperties
+  contentClassName?: string
   duration?: number
   offsetY?: number
   startOnView?: boolean
@@ -107,6 +111,10 @@ export function CodeTypingLine({
 export function SectionCodeReveal({
   children,
   className,
+  closingText,
+  closingTextClassName,
+  closingTextStyle,
+  contentClassName,
   duration = 20,
   offsetY,
   startOnView,
@@ -117,7 +125,7 @@ export function SectionCodeReveal({
   const delayMs = useMemo(() => getTypingDurationMs(text, duration), [duration, text])
 
   return (
-    <>
+    <div className={cn(className)}>
       <CodeTypingLine
         className={textClassName}
         duration={duration}
@@ -125,9 +133,16 @@ export function SectionCodeReveal({
         style={textStyle}
         text={text}
       />
-      <TimedReveal className={className} delayMs={delayMs} offsetY={offsetY} startOnView={startOnView}>
-        {children}
+      <TimedReveal className={contentClassName} delayMs={delayMs} offsetY={offsetY} startOnView={startOnView}>
+        <>
+          {children}
+          {closingText ? (
+            <div className={closingTextClassName} style={closingTextStyle}>
+              {closingText}
+            </div>
+          ) : null}
+        </>
       </TimedReveal>
-    </>
+    </div>
   )
 }

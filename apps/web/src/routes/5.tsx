@@ -171,6 +171,20 @@ function HeroSection() {
       <HeroGraph />
 
       <div className="relative z-10 mx-auto max-w-3xl text-center">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-2 -z-10 h-[30rem] w-[min(100%,54rem)] -translate-x-1/2 rounded-full blur-[88px]"
+          style={{
+            background: `radial-gradient(circle at 50% 38%, ${DSA.current}26 0%, ${DSA.visited}1c 32%, transparent 72%)`,
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[28rem] w-[min(100%,50rem)] -translate-x-1/2 rounded-full blur-[64px]"
+          style={{
+            background: `radial-gradient(ellipse 60% 55% at 50% 40%, ${DSA.bg} 0%, ${DSA.bg}e6 20%, ${DSA.bg}99 52%, transparent 100%)`,
+          }}
+        />
         <div className="mb-4 flex items-center justify-center gap-3">
           <span className="size-3 rounded-full" style={{ backgroundColor: DSA.visited }} />
           <span className="text-xs" style={{ color: DSA.visited, fontFamily: "JetBrains Mono, monospace" }}>visited</span>
@@ -206,7 +220,7 @@ function HeroSection() {
             className="mx-auto mt-20"
             duration={18}
             label="BinaryTree<Stat>.inorder()"
-            labelClassName="mb-2 text-center text-[10px]"
+            labelClassName="mb-2 text-center text-[11px]"
             labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
             offsetY={12}
           >
@@ -288,7 +302,7 @@ function CompanyLogosSection() {
         className="mx-auto max-w-5xl"
         duration={18}
         label="Set<Company>.values()"
-        labelClassName="mb-2 text-center text-[10px]"
+        labelClassName="mb-2 text-center text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >
         <p className="mb-6 text-center text-sm" style={{ color: DSA.muted }}>Trusted by engineers who landed offers at top companies</p>
@@ -315,7 +329,7 @@ function TestimonialsSection() {
         className="mx-auto max-w-5xl"
         duration={18}
         label="PriorityQueue<Review>.poll()"
-        labelClassName="mb-1 text-[10px]"
+        labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >
         <div className="mb-8">
@@ -369,7 +383,7 @@ function CoursesSection() {
         className="mx-auto max-w-5xl"
         duration={18}
         label="HashMap<Category, Course[]>.entries()"
-        labelClassName="mb-1 text-[10px]"
+        labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >
         <div className="mb-12">
@@ -444,10 +458,14 @@ function PracticeSection() {
   return (
     <section id="practice" className="px-6 py-16" style={{ backgroundColor: DSA.bg, borderTop: `1px solid ${DSA.border}` }}>
       <CodeSectionBlock
-        className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2"
+        className="mx-auto max-w-5xl"
+        contentClassName="grid items-center gap-12 lg:grid-cols-2"
+        closingText="}"
+        closingTextClassName="mt-4 text-[11px]"
+        closingTextStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
         duration={26}
         label="function startPractice(): void {"
-        labelClassName="mb-1 text-[10px] lg:col-span-2"
+        labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >
         <div>
@@ -543,9 +561,12 @@ function FounderSection() {
     <section className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
       <CodeSectionBlock
         className="mx-auto max-w-3xl"
+        closingText="}"
+        closingTextClassName="mt-4 text-[11px]"
+        closingTextStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
         duration={26}
         label="class Founder implements Engineer {"
-        labelClassName="mb-1 text-[10px]"
+        labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >
         {/* Timeline as linked list */}

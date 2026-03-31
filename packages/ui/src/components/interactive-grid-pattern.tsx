@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect, useCallback } from "react"
 
 import { cn } from "@my-better-t-app/ui/lib/utils"
 
@@ -28,18 +28,39 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
 export function InteractiveGridPattern({
   width = 40,
   height = 40,
-  squares = [24, 24],
+  squares,
   className,
   squaresClassName,
   ...props
 }: InteractiveGridPatternProps) {
-  const [horizontal, vertical] = squares
+  const containerRef = useRef<SVGSVGElement>(null)
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
+  const [gridSize, setGridSize] = useState<[number, number]>(squares ?? [24, 24])
+
+  const computeGrid = useCallback(() => {
+    const el = containerRef.current?.parentElement
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const h = Math.max(Math.ceil(rect.width / width), squares?.[0] ?? 24)
+    const v = Math.max(Math.ceil(rect.height / height), squares?.[1] ?? 24)
+    setGridSize([h, v])
+  }, [width, height, squares])
+
+  useEffect(() => {
+    computeGrid()
+    const obs = new ResizeObserver(computeGrid)
+    const el = containerRef.current?.parentElement
+    if (el) obs.observe(el)
+    return () => obs.disconnect()
+  }, [computeGrid])
+
+  const [horizontal, vertical] = gridSize
 
   return (
     <svg
-      width={width * horizontal}
-      height={height * vertical}
+      ref={containerRef}
+      viewBox={`0 0 ${width * horizontal} ${height * vertical}`}
+      preserveAspectRatio="xMidYMid slice"
       className={cn(
         "absolute inset-0 h-full w-full border border-gray-400/30",
         className
