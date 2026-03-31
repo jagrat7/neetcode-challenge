@@ -1,0 +1,52 @@
+import { Button } from "@my-better-t-app/ui/components/button"
+import { Rocket } from "lucide-react"
+import { BinaryTreeSketch } from "./binary-tree"
+import { Squiggle } from "./layout"
+
+export function HeroSection() {
+  return (
+    <section className="relative overflow-hidden px-6 pb-32 pt-24 md:pt-36">
+      <BinaryTreeSketch />
+      <div className="relative mx-auto max-w-3xl">
+        <div className="text-center">
+          <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[0.95] text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>
+            <span className="relative inline-block">
+              NeetCode
+              <Squiggle className="absolute -bottom-1 left-0 h-2 w-full" />
+            </span>
+          </h1>
+          <p className="mt-3 text-[clamp(1.5rem,4vw,2.5rem)] font-semibold text-[#2563EB]" style={{ fontFamily: "Caveat, cursive" }}>
+            A Better Way to Prepare
+          </p>
+          <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-[#64748B]">
+            Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.
+          </p>
+        </div>
+
+        <div className="mt-10 flex items-center justify-center gap-4">
+          <Button size="lg" className="rounded-none border-2 border-[#2563EB] bg-[#2563EB] px-8 text-white shadow-[3px_3px_0px_#1E293B] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#1E293B]">
+            <Rocket className="size-4" />
+            Get Pro
+          </Button>
+          <Button variant="outline" size="lg" className="rounded-none border-2 border-[#1E293B] px-8 text-[#1E293B] hover:bg-[#1E293B]/5">
+            Start Free
+          </Button>
+        </div>
+
+        {/* Stats as hand-drawn bar chart */}
+        <div className="mx-auto mt-20 flex max-w-md items-end justify-center gap-16">
+          <div className="flex flex-col items-center">
+            <span className="text-4xl font-bold text-[#2563EB]" style={{ fontFamily: "Caveat, cursive" }}>1M+</span>
+            <div className="mt-1 h-20 w-16 border-2 border-[#2563EB] bg-[#2563EB]/10" style={{ borderRadius: "2px" }} />
+            <span className="mt-2 text-xs text-[#64748B]">Engineers prepared</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-4xl font-bold text-[#16A34A]" style={{ fontFamily: "Caveat, cursive" }}>1,000+</span>
+            <div className="mt-1 h-28 w-16 border-2 border-[#16A34A] bg-[#16A34A]/10" style={{ borderRadius: "2px" }} />
+            <span className="mt-2 text-center text-xs text-[#64748B]">Problems & Videos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

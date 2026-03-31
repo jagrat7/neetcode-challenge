@@ -176,11 +176,14 @@ function HeroSection() {
           <span className="text-xs" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace" }}>current</span>
         </div>
 
+        <div className="mb-2 text-[11px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+          const platform = new <span style={{ color: DSA.current }}>NeetCode</span>()
+        </div>
         <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1]" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>
           <span style={{ color: DSA.current }}>NeetCode</span>
         </h1>
-        <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8 }}>
-          A Better Way to Prepare
+        <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8, fontFamily: "JetBrains Mono, monospace" }}>
+          <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>A Better Way to Prepare
         </p>
         <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed" style={{ color: DSA.muted }}>
           Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.
@@ -198,6 +201,9 @@ function HeroSection() {
 
         {/* Binary tree stats */}
         <div className="mx-auto mt-20">
+          <div className="mb-2 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+            BinaryTree&lt;Stat&gt;.inorder()
+          </div>
           <svg viewBox="0 0 400 140" className="mx-auto h-36 w-full max-w-md" fill="none">
             {/* Root */}
             <circle cx="200" cy="30" r="28" fill={`${DSA.visited}15`} stroke={DSA.visited} strokeWidth="2" />
@@ -221,55 +227,64 @@ function HeroSection() {
   )
 }
 
-function TopicNetwork() {
-  return (
-    <section className="px-6 py-10" style={{ backgroundColor: DSA.bg, borderTop: `1px solid ${DSA.border}`, borderBottom: `1px solid ${DSA.border}` }}>
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-3">
-        {TOPICS.map((topic, i) => {
-          const states = [DSA.visited, DSA.current, DSA.queued, DSA.unvisited]
-          const color = states[i % states.length]
-          return (
-            <div
-              key={topic}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs transition-all"
-              style={{
-                border: `1.5px solid ${color}40`,
-                borderRadius: "20px",
-                color,
-                fontFamily: "JetBrains Mono, monospace",
-              }}
-            >
-              <span className="size-2 rounded-full" style={{ backgroundColor: color }} />
-              {topic}
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )
-}
+// function TopicNetwork() {
+//   return (
+//     <section className="px-6 py-10" style={{ backgroundColor: DSA.bg, borderTop: `1px solid ${DSA.border}`, borderBottom: `1px solid ${DSA.border}` }}>
+//       <div className="mx-auto max-w-5xl">
+//         <div className="mb-4 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+//           const topics: string[] = [{TOPICS.length}]
+//         </div>
+//         <div className="flex flex-wrap items-center justify-center gap-3">
+//           {TOPICS.map((topic, i) => {
+//             const states = [DSA.visited, DSA.current, DSA.queued, DSA.unvisited]
+//             const color = states[i % states.length]
+//             return (
+//               <div
+//                 key={topic}
+//                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs transition-all"
+//                 style={{
+//                   border: `1.5px solid ${color}40`,
+//                   borderRadius: "20px",
+//                   color,
+//                   fontFamily: "JetBrains Mono, monospace",
+//                 }}
+//               >
+//                 <span className="text-[9px] opacity-50">[{i}]</span>
+//                 <span className="size-2 rounded-full" style={{ backgroundColor: color }} />
+//                 {topic}
+//               </div>
+//             )
+//           })}
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
 
 function CompanyLogosSection() {
   return (
     <section className="px-6 py-14" style={{ backgroundColor: DSA.bg }}>
       <div className="mx-auto max-w-5xl">
+        <div className="mb-2 text-center text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+          Set&lt;Company&gt;.values()
+        </div>
         <p className="mb-6 text-center text-sm" style={{ color: DSA.muted }}>Trusted by engineers who landed offers at top companies</p>
-        {/* Linked list: node → → → */}
-        <div className="flex flex-wrap items-center justify-center gap-1">
-          {COMPANIES.map((c, i) => (
-            <div key={c.name} className="flex items-center">
-              <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ border: `1.5px solid ${DSA.border}` }}>
-                <img src={c.logo} alt={c.name} className="size-5 object-contain" />
-                <span className="text-sm" style={{ color: DSA.fg }}>{c.name}</span>
-              </div>
-              {i < COMPANIES.length - 1 && (
-                <svg width="24" height="12" viewBox="0 0 24 12" fill="none" className="mx-0.5 shrink-0">
-                  <path d="M2 6H18M14 2L20 6L14 10" stroke={DSA.visited} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
-                </svg>
-              )}
+        {/* Set: unordered unique elements */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {COMPANIES.map((c) => (
+            <div
+              key={c.name}
+              className="flex items-center gap-2 rounded-lg px-4 py-2.5 transition-all duration-300 hover:scale-105"
+              style={{ border: `1.5px solid ${DSA.border}`, backgroundColor: `${DSA.card}80` }}
+            >
+              <img src={c.logo} alt={c.name} className="size-5 object-contain" />
+              <span className="text-sm" style={{ color: DSA.fg }}>{c.name}</span>
             </div>
           ))}
         </div>
+        <p className="mt-3 text-center text-[9px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+          // order not guaranteed, all elements unique
+        </p>
       </div>
     </section>
   )
@@ -278,33 +293,47 @@ function CompanyLogosSection() {
 function TestimonialsSection() {
   return (
     <section className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
-      <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {TESTIMONIALS.map((t) => (
-          <div
-            key={t.name}
-            className="relative p-5 transition-all duration-300"
-            style={{ backgroundColor: DSA.card, border: `1px solid ${DSA.border}`, borderRadius: "8px" }}
-          >
-            {/* Node circle on avatar */}
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <img src={t.photo} alt={t.name} className="size-10 rounded-full object-cover" style={{ border: `2px solid ${DSA.visited}` }} />
-                <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full" style={{ backgroundColor: DSA.visited, border: `2px solid ${DSA.card}` }} />
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-8">
+          <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+            PriorityQueue&lt;Review&gt;.poll()
+          </div>
+          <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Testimonials</h2>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIALS.map((t, ti) => (
+            <div
+              key={t.name}
+              className="relative p-5 transition-all duration-300"
+              style={{ backgroundColor: DSA.card, border: `1px solid ${DSA.border}`, borderRadius: "8px" }}
+            >
+              <div className="absolute right-3 top-3 text-[9px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+                node[{ti}]
               </div>
-              <div>
-                <div className="text-sm font-semibold" style={{ color: DSA.fg }}>{t.name}</div>
-                <div className="flex items-center gap-1 text-xs" style={{ color: DSA.muted }}>
-                  <img src={t.companyLogo} alt={t.company} className="size-3 object-contain" />
-                  {t.company}
+              {/* Node circle on avatar */}
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <img src={t.photo} alt={t.name} className="size-10 rounded-full object-cover" style={{ border: `2px solid ${DSA.visited}` }} />
+                  <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full" style={{ backgroundColor: DSA.visited, border: `2px solid ${DSA.card}` }} />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold" style={{ color: DSA.fg }}>{t.name}</div>
+                  <div className="flex items-center gap-1 text-xs" style={{ color: DSA.muted }}>
+                    <img src={t.companyLogo} alt={t.company} className="size-3 object-contain" />
+                    {t.company}
+                  </div>
                 </div>
               </div>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: DSA.muted }}>
+                <span style={{ color: DSA.fg, fontWeight: 600 }}>{t.highlight}</span>
+                {t.rest}
+              </p>
+              <div className="mt-3 text-[9px]" style={{ color: DSA.visited, fontFamily: "JetBrains Mono, monospace", opacity: 0.6 }}>
+                ✓ verified = true
+              </div>
             </div>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: DSA.muted }}>
-              <span style={{ color: DSA.fg, fontWeight: 600 }}>{t.highlight}</span>
-              {t.rest}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -315,6 +344,9 @@ function CoursesSection() {
     <section id="courses" className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
       <div className="mx-auto max-w-5xl">
         <div className="mb-12">
+          <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+            HashMap&lt;Category, Course[]&gt;.entries()
+          </div>
           <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Courses</h2>
           <p className="mt-2" style={{ color: DSA.muted }}>Structured learning paths from fundamentals to advanced topics.</p>
         </div>
@@ -385,15 +417,21 @@ function PracticeSection() {
     <section id="practice" className="px-6 py-16" style={{ backgroundColor: DSA.bg, borderTop: `1px solid ${DSA.border}` }}>
       <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2">
         <div>
+          <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+            function startPractice(): void {"{"}
+          </div>
           <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Start Practicing for Free</h2>
           <p className="mt-3" style={{ color: DSA.muted }}>The best resources for coding interviews. Period.</p>
           <ul className="mt-6 space-y-3">
-            {VALUE_PROPS.map((prop) => (
+            {VALUE_PROPS.map((prop, pi) => (
               <li key={prop} className="flex items-start gap-3">
                 <div className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: `${DSA.visited}20` }}>
                   <Check className="size-3" style={{ color: DSA.visited }} />
                 </div>
-                <span className="text-sm" style={{ color: DSA.muted }}>{prop}</span>
+                <span className="text-sm" style={{ color: DSA.muted }}>
+                  <span className="mr-1.5 text-[9px]" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>assert({pi})</span>
+                  {prop}
+                </span>
               </li>
             ))}
           </ul>
@@ -413,6 +451,9 @@ function PracticeSection() {
 
         {/* Linked list practice tracker */}
         <div className="rounded-lg p-6" style={{ backgroundColor: DSA.card, border: `1px solid ${DSA.border}` }}>
+          <div className="mb-1 text-[9px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+            stack&lt;Topic&gt; progress
+          </div>
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="rounded-full px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: `${DSA.visited}20`, color: DSA.visited }}>Free</span>
@@ -421,9 +462,9 @@ function PracticeSection() {
             <ChevronRight className="size-4" style={{ color: DSA.muted }} />
           </div>
           <div className="mb-4">
-            <div className="mb-1 flex justify-between text-xs" style={{ color: DSA.muted }}>
-              <span>67 / 150 completed</span>
-              <span>45%</span>
+            <div className="mb-1 flex justify-between text-xs" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+              <span>solved: 67 / 150</span>
+              <span>0.45</span>
             </div>
             <div className="h-2 overflow-hidden rounded-full" style={{ backgroundColor: `${DSA.unvisited}40` }}>
               <div className="h-full rounded-full" style={{ width: "45%", backgroundColor: DSA.visited }} />
@@ -441,8 +482,9 @@ function PracticeSection() {
                     <div className="h-4 w-0.5" style={{ backgroundColor: DSA.visited, opacity: 0.3 }} />
                   )}
                 </div>
-                <div className="flex-1 py-1.5">
+                <div className="flex flex-1 items-center justify-between py-1.5">
                   <span className="text-sm" style={{ color: DSA.fg }}>{topic}</span>
+                  <span className="text-[9px]" style={{ color: DSA.visited, fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>pop()</span>
                 </div>
               </div>
             ))}
@@ -451,7 +493,10 @@ function PracticeSection() {
               <div className="flex size-8 items-center justify-center rounded-full text-xs" style={{ backgroundColor: `${DSA.unvisited}15`, border: `2px solid ${DSA.unvisited}`, color: DSA.muted }}>
                 ?
               </div>
-              <span className="text-sm" style={{ color: DSA.muted }}>+14 more topics</span>
+              <span className="text-sm" style={{ color: DSA.muted }}>
+                +14 more topics
+                <span className="ml-2 text-[9px]" style={{ fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>// stack.size()</span>
+              </span>
             </div>
           </div>
         </div>
@@ -475,15 +520,18 @@ function FounderSection() {
             </div>
           </div>
           <div>
+            <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+              class Founder implements Engineer {"{"}
+            </div>
             <h2 className="text-2xl font-bold" style={{ fontFamily: "JetBrains Mono, monospace", color: DSA.fg }}>Hi, I'm Navi</h2>
             <div className="mt-4 space-y-3 text-sm leading-relaxed" style={{ color: DSA.muted }}>
-              <p>I created NeetCode in 2020 when I was unemployed and couldn't find a job.</p>
+              <p><span className="text-[9px]" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>// 2020 </span>I created NeetCode in 2020 when I was unemployed and couldn't find a job.</p>
               <p>While I was struggling myself, it was still rewarding for me to make videos. I received so many messages from others who got jobs after studying with my videos.</p>
-              <p>About a year later I managed to get a job at Google.</p>
+              <p><span className="text-[9px]" style={{ color: DSA.visited, fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>// 2021 </span>About a year later I managed to get a job at Google.</p>
             </div>
             {/* Linked list timeline */}
             <div className="mt-6 flex items-center gap-1">
-              <span className="text-xs" style={{ color: DSA.muted }}>path:</span>
+              <span className="text-xs" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>path:</span>
               {FOUNDER_COMPANIES.map((c, i) => (
                 <div key={c.name} className="flex items-center">
                   {i > 0 && (
@@ -506,16 +554,21 @@ function FounderSection() {
 }
 
 function Footer() {
+  const footerSections = [
+    { title: "Links", items: ["Blind 75", "NeetCode 150", "NeetCode 250"] },
+    { title: "Social", items: ["YouTube", "LinkedIn", "Twitter"] },
+    { title: "Contact", items: ["support@neetcode.io"] },
+    { title: "Legal", items: ["Privacy Policy", "Terms of Service"] },
+  ]
+
   return (
     <footer className="px-6 py-10" style={{ backgroundColor: DSA.bg, borderTop: `1px solid ${DSA.border}` }}>
       <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2 md:grid-cols-4">
-        {[
-          { title: "Links", items: ["Blind 75", "NeetCode 150", "NeetCode 250"] },
-          { title: "Social", items: ["YouTube", "LinkedIn", "Twitter"] },
-          { title: "Contact", items: ["support@neetcode.io"] },
-          { title: "Legal", items: ["Privacy Policy", "Terms of Service"] },
-        ].map((section) => (
+        {footerSections.map((section, si) => (
           <div key={section.title}>
+            <div className="mb-1 text-[9px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace", opacity: 0.5 }}>
+              map[{si}]
+            </div>
             <h3 className="mb-3 text-sm font-semibold" style={{ color: DSA.fg }}>{section.title}</h3>
             <ul className="space-y-2 text-sm">
               {section.items.map((item) => (
@@ -532,9 +585,11 @@ function Footer() {
               {dot}
             </span>
           ))}
-          <span className="ml-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>traversal complete</span>
+          <span className="ml-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>// traversal complete</span>
         </div>
-        <p className="text-xs" style={{ color: DSA.muted }}>Copyright &copy; 2026 neetcode.io All rights reserved.</p>
+        <p className="text-xs" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
+          <span style={{ opacity: 0.4 }}>return </span>Copyright &copy; 2026 neetcode.io All rights reserved.
+        </p>
       </div>
     </footer>
   )
@@ -548,7 +603,7 @@ export default function DSAVisualLanding() {
         <Navbar />
         <main>
           <HeroSection />
-          <TopicNetwork />
+          {/* <TopicNetwork /> */}
           <CompanyLogosSection />
           <TestimonialsSection />
           <CoursesSection />
