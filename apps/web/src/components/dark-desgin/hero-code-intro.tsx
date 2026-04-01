@@ -21,7 +21,7 @@ export function HeroCodeIntro({
   keywordColor,
   mutedColor,
 }: HeroCodeIntroProps) {
-  const typedText = 'NeetCode({ mode: "interview" })'
+  const typedText = 'NeetCode()'
   const delayMs = getTypingDurationMs(typedText, 24)
 
   return (

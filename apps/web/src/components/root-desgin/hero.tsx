@@ -41,7 +41,7 @@ export function HeroSection() {
         <div className="mx-auto mt-20 flex max-w-md items-end justify-center gap-16">
           <div className="flex flex-col items-center">
             <span className="text-4xl font-bold text-[#2563EB]" style={{ fontFamily: "Caveat, cursive" }}>1M+</span>
-            <div className="mt-1 h-20 w-16 border-2 border-[#2563EB] bg-[#2563EB]/10" style={{ borderRadius: "2px" }} />
+            <div className="mt-1 h-30 w-16 border-2 border-[#2563EB] bg-[#2563EB]/10" style={{ borderRadius: "2px" }} />
             <span className="mt-2 text-xs text-[#64748B]">Engineers prepared</span>
           </div>
           <div className="flex flex-col items-center">

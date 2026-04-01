@@ -12,11 +12,8 @@ export function PracticeSection() {
       <CodeSectionBlock
         className="mx-auto max-w-5xl"
         contentClassName="grid items-center gap-12 lg:grid-cols-2"
-        closingText="}"
-        closingTextClassName="mt-4 text-[11px]"
-        closingTextStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
         duration={26}
-        label="function startPractice(): void {"
+        label="function startPractice(): void"
         labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >

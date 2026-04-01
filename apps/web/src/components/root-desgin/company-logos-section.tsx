@@ -3,7 +3,7 @@ import { COMPANIES } from "../../data/landing-data"
 
 export function CompanyLogosSection() {
   return (
-    <section className="bg-[#FAFAFA] px-6 py-14">
+    <section className="bg-[#FAFAFA] px-6 pb-4 pt-14">
       <div className="mx-auto max-w-5xl">
         <p className="mb-6 text-center text-sm text-[#64748B]">Trusted by engineers who landed offers at top companies</p>
         {/* Linked list style: node → node → node */}

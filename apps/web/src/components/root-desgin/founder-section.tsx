@@ -3,19 +3,19 @@ import { FOUNDER_COMPANIES } from "../../data/landing-data"
 
 export function FounderSection() {
   return (
-    <section className="bg-[#FAFAFA] px-6 py-16">
-      <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 md:flex-row md:items-start">
+    <section className="bg-[#FAFAFA] px-6 py-20">
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 md:flex-row md:items-start">
         {/* Portrait in hand-drawn circle frame */}
         <div className="relative shrink-0">
-          <svg className="absolute -inset-3 size-[calc(100%+24px)]" viewBox="0 0 140 140" fill="none">
-            <ellipse cx="70" cy="70" rx="65" ry="63" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 4" transform="rotate(-3 70 70)" />
+          <svg className="absolute -inset-4 size-[calc(100%+32px)]" viewBox="0 0 200 200" fill="none">
+            <ellipse cx="100" cy="100" rx="92" ry="90" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 4" transform="rotate(-3 100 100)" />
           </svg>
-          <img src="/images/brand/navi.png" alt="Navi" className="relative size-28 rounded-full object-cover" />
+          <img src="/images/brand/navi.png" alt="Navi" className="relative size-44 rounded-full object-cover" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>Hi, I'm Navi</h2>
+          <h2 className="text-3xl font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>Hi, I'm Navi</h2>
           <Squiggle color="#2563EB" className="mt-1 h-1 w-16" />
-          <div className="mt-4 space-y-3 text-sm leading-relaxed text-[#475569]">
+          <div className="mt-4 space-y-3 text-base leading-relaxed text-[#475569]">
             <p>I created NeetCode in 2020 when I was unemployed and couldn't find a job.</p>
             <p>While I was struggling myself, it was still rewarding for me to make videos. I received so many messages from others who got jobs after studying with my videos. It felt so gratifying and kept me motivated.</p>
             <p>About a year later I managed to get a job at Google.</p>

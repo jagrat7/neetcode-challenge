@@ -7,9 +7,6 @@ import { SectionCodeReveal } from "./typed-reveal"
 interface CodeSectionBlockProps {
   children: ReactNode
   className?: string
-  closingText?: string
-  closingTextClassName?: string
-  closingTextStyle?: CSSProperties
   contentClassName?: string
   duration?: number
   label: string
@@ -22,9 +19,6 @@ interface CodeSectionBlockProps {
 export function CodeSectionBlock({
   children,
   className,
-  closingText,
-  closingTextClassName,
-  closingTextStyle,
   contentClassName,
   duration = 20,
   label,
@@ -36,9 +30,6 @@ export function CodeSectionBlock({
   return (
     <SectionCodeReveal
       className={className}
-      closingText={closingText}
-      closingTextClassName={closingTextClassName}
-      closingTextStyle={closingTextStyle}
       contentClassName={cn("pt-3", contentClassName)}
       duration={duration}
       offsetY={offsetY}

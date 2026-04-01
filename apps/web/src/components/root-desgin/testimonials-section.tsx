@@ -2,7 +2,7 @@ import { TESTIMONIALS } from "../../data/landing-data"
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-[#FAFAFA] px-6 py-16">
+    <section className="bg-[#FAFAFA] px-6 pb-16 pt-8">
       <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2 lg:grid-cols-3">
         {TESTIMONIALS.map((t, i) => {
           const rotations = [-1.5, 1, -0.5, 1.5, -1]

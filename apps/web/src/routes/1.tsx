@@ -1,5 +1,6 @@
 import { CompanyLogosSection } from "../components/dark-desgin/company-logos-section"
 import { CoursesSection } from "../components/dark-desgin/courses-section"
+import { FeaturesSection } from "../components/dark-desgin/features-section"
 import { DotGrid } from "../components/dark-desgin/dot-grid"
 import { Footer } from "../components/dark-desgin/footer"
 import { FounderSection } from "../components/dark-desgin/founder-section"
@@ -19,6 +20,7 @@ export default function DSAVisualLanding() {
           <HeroSection />
           {/* <TopicNetwork /> */}
           <CompanyLogosSection />
+          <FeaturesSection />
           <TestimonialsSection />
           <CoursesSection />
           <PracticeSection />

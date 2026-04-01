@@ -9,11 +9,8 @@ export function FounderSection() {
     <section className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
       <CodeSectionBlock
         className="mx-auto max-w-3xl"
-        closingText="}"
-        closingTextClassName="mt-4 text-[11px]"
-        closingTextStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
         duration={26}
-        label="class Founder implements Engineer {"
+        label="class Founder implements Engineer"
         labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
       >

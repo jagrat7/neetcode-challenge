@@ -18,6 +18,7 @@ export function Footer() {
             <li><a href="#" className="hover:text-[#1E293B]">YouTube</a></li>
             <li><a href="#" className="hover:text-[#1E293B]">LinkedIn</a></li>
             <li><a href="#" className="hover:text-[#1E293B]">Twitter</a></li>
+            <li><a href="#" className="hover:text-[#1E293B]">Discord</a></li>
           </ul>
         </div>
         <div>

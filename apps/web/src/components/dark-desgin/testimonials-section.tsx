@@ -31,8 +31,7 @@ export function TestimonialsSection() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <img src={t.photo} alt={t.name} className="size-10 rounded-full object-cover" style={{ border: `2px solid ${DSA.visited}` }} />
-                  <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full" style={{ backgroundColor: DSA.visited, border: `2px solid ${DSA.card}` }} />
+                  <img src={t.photo} alt={t.name} className="size-10 rounded-full object-cover" style={{ border: `2px solid ${[DSA.visited, DSA.queued, DSA.current][ti % 3]}` }} />
                 </div>
                 <div>
                   <div className="text-sm font-semibold" style={{ color: DSA.fg }}>{t.name}</div>

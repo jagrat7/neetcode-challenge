@@ -115,18 +115,18 @@ export function HeroSection() {
             background: `radial-gradient(ellipse 60% 55% at 50% 40%, ${DSA.bg} 0%, ${DSA.bg}e6 20%, ${DSA.bg}99 52%, transparent 100%)`,
           }}
         />
-        <div className="mb-4 flex items-center justify-center gap-3">
+        {/* <div className="mb-4 flex items-center justify-center gap-3">
           <span className="size-3 rounded-full" style={{ backgroundColor: DSA.visited }} />
           <span className="text-xs" style={{ color: DSA.visited, fontFamily: "JetBrains Mono, monospace" }}>visited</span>
           <span className="size-3 rounded-full" style={{ backgroundColor: DSA.queued }} />
           <span className="text-xs" style={{ color: DSA.queued, fontFamily: "JetBrains Mono, monospace" }}>queued</span>
           <span className="size-3 rounded-full" style={{ backgroundColor: DSA.current }} />
           <span className="text-xs" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace" }}>current</span>
-        </div>
+        </div> */}
 
         <HeroCodeIntro currentColor={DSA.current} fgColor={DSA.fg} keywordColor={DSA.visited} mutedColor={DSA.muted}>
           <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1]" style={{ fontFamily: "JetBrains Mono, monospace" }}>
-            <CyberGlitchText text="NeetCode" className="text-[#06B6D4]" />
+            NeetCode
           </h1>
           <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8, fontFamily: "JetBrains Mono, monospace" }}>
             <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>A Better Way to Prepare
@@ -145,33 +145,23 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Binary tree stats */}
-          <CodeSectionBlock
-            className="mx-auto mt-20"
-            duration={18}
-            label="BinaryTree<Stat>.inorder()"
-            labelClassName="mb-2 text-center text-[11px]"
-            labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
-            offsetY={12}
-          >
-            <svg viewBox="0 0 400 140" className="mx-auto h-36 w-full max-w-md" fill="none">
-              {/* Root */}
-              <circle cx="200" cy="30" r="28" fill={`${DSA.visited}15`} stroke={DSA.visited} strokeWidth="2" />
-              <text x="200" y="27" textAnchor="middle" fill={DSA.visited} fontSize="14" fontWeight="700" fontFamily="JetBrains Mono">1M+</text>
-              <text x="200" y="40" textAnchor="middle" fill={DSA.muted} fontSize="8" fontFamily="JetBrains Mono">engineers</text>
-              {/* Edges */}
-              <line x1="178" y1="52" x2="120" y2="80" stroke={DSA.border} strokeWidth="1.5" />
-              <line x1="222" y1="52" x2="280" y2="80" stroke={DSA.border} strokeWidth="1.5" />
-              {/* Left child */}
-              <circle cx="110" cy="100" r="24" fill={`${DSA.queued}15`} stroke={DSA.queued} strokeWidth="2" />
-              <text x="110" y="97" textAnchor="middle" fill={DSA.queued} fontSize="12" fontWeight="700" fontFamily="JetBrains Mono">1K+</text>
-              <text x="110" y="109" textAnchor="middle" fill={DSA.muted} fontSize="7" fontFamily="JetBrains Mono">problems</text>
-              {/* Right child */}
-              <circle cx="290" cy="100" r="24" fill={`${DSA.current}15`} stroke={DSA.current} strokeWidth="2" />
-              <text x="290" y="97" textAnchor="middle" fill={DSA.current} fontSize="12" fontWeight="700" fontFamily="JetBrains Mono">500+</text>
-              <text x="290" y="109" textAnchor="middle" fill={DSA.muted} fontSize="7" fontFamily="JetBrains Mono">videos</text>
-            </svg>
-          </CodeSectionBlock>
+          {/* Stats */}
+          <div className="mx-auto mt-16 flex max-w-md items-center justify-center gap-10">
+            <div className="text-center">
+              <div className="text-2xl font-bold" style={{ color: DSA.visited, fontFamily: "JetBrains Mono, monospace" }}>1M+</div>
+              <div className="mt-1 text-xs" style={{ color: DSA.muted }}>engineers</div>
+            </div>
+            <div className="h-8 w-px" style={{ backgroundColor: DSA.border }} />
+            <div className="text-center">
+              <div className="text-2xl font-bold" style={{ color: DSA.queued, fontFamily: "JetBrains Mono, monospace" }}>1K+</div>
+              <div className="mt-1 text-xs" style={{ color: DSA.muted }}>problems</div>
+            </div>
+            <div className="h-8 w-px" style={{ backgroundColor: DSA.border }} />
+            <div className="text-center">
+              <div className="text-2xl font-bold" style={{ color: DSA.current, fontFamily: "JetBrains Mono, monospace" }}>500+</div>
+              <div className="mt-1 text-xs" style={{ color: DSA.muted }}>videos</div>
+            </div>
+          </div>
         </HeroCodeIntro>
       </div>
     </section>

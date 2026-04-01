@@ -26,3 +26,39 @@ export function GridBackground() {
     />
   )
 }
+
+export function WhiteboardFrame({ className = "" }: { className?: string }) {
+  return (
+    <>
+      <div
+        className={`pointer-events-none absolute inset-0 rounded-[4px] ${className}`}
+        style={{
+          border: "4px solid #B8BCC2",
+          borderTopColor: "#CBCFD5",
+          borderLeftColor: "#C2C6CC",
+          borderRightColor: "#AAAEB4",
+          borderBottomColor: "#A2A6AC",
+          boxShadow:
+            "inset 0 0 0 1px rgba(255,255,255,0.35), inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.03)",
+        }}
+      />
+      {/* Eraser tray */}
+      <div className="pointer-events-none absolute -bottom-[10px] left-1/2 z-10 flex -translate-x-1/2 items-end">
+        <div
+          className="h-[10px] w-16 rounded-b-[3px]"
+          style={{
+            background: "linear-gradient(to bottom, #B0B4BA, #9CA0A6)",
+            boxShadow: "0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
+          }}
+        />
+        <div
+          className="absolute -top-[2px] left-1/2 h-[6px] w-10 -translate-x-1/2 rounded-[1px]"
+          style={{
+            background: "linear-gradient(to bottom, #F5F5F0, #E8E8E0)",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.08)",
+          }}
+        />
+      </div>
+    </>
+  )
+}

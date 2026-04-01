@@ -1,11 +1,9 @@
 import type { Route } from "./+types/_index"
 import { HeroSection } from "@/components/root-desgin/hero"
-import { ArrayTopicStrip } from "@/components/root-desgin/array-topic-strip"
 import { CompanyLogosSection } from "@/components/root-desgin/company-logos-section"
 import { TestimonialsSection } from "@/components/root-desgin/testimonials-section"
 import { FeaturesSection } from "@/components/root-desgin/features-section"
 import { CoursesSection } from "@/components/root-desgin/courses-section"
-import { PracticeSection } from "@/components/root-desgin/practice-section"
 import { FounderSection } from "@/components/root-desgin/founder-section"
 import { Footer } from "@/components/root-desgin/footer"
 import { Navbar } from "@/components/root-desgin/navbar"
@@ -25,11 +23,10 @@ export default function WhiteboardLanding() {
         <main>
           <HeroSection />
           {/* <ArrayTopicStrip /> */}
-          <CompanyLogosSection />
-          <TestimonialsSection />
           <FeaturesSection />
           <CoursesSection />
-          <PracticeSection />
+          <CompanyLogosSection />
+          <TestimonialsSection />
           <FounderSection />
         </main>
         <Footer />

@@ -12,6 +12,10 @@ import "./index.css";
 import type { Route } from "./+types/root";
 import { ThemeProvider } from "./components/theme-provider";
 
+if (import.meta.env.DEV) {
+  import("react-grab");
+}
+
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
