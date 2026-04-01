@@ -2,6 +2,7 @@ import { Button } from "@my-better-t-app/ui/components/button"
 import { Rocket } from "lucide-react"
 import { InteractiveGridPattern } from "@my-better-t-app/ui/components/interactive-grid-pattern"
 import { Squiggle } from "./layout"
+import { HERO_CONTENT } from "../../data/landing-data"
 
 export function HeroSection() {
   return (
@@ -20,10 +21,10 @@ export function HeroSection() {
             </span>
           </h1>
           <p className="mt-3 text-[clamp(1.5rem,4vw,2.5rem)] font-semibold text-[#2563EB]" style={{ fontFamily: "Caveat, cursive" }}>
-            A Better Way to Prepare
+            {HERO_CONTENT.tagline}
           </p>
           <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-[#64748B]">
-            Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.
+            {HERO_CONTENT.description}
           </p>
         </div>
 

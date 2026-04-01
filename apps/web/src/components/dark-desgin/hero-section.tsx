@@ -1,6 +1,7 @@
 import { Button } from "@my-better-t-app/ui/components/button"
 import { CyberGlitchText } from "@my-better-t-app/ui/components/ui/cyber-glitch-text"
 import { Rocket } from "lucide-react"
+import { HERO_CONTENT } from "../../data/landing-data"
 
 import { CodeSectionBlock } from "./code-section-block"
 import { DSA } from "./dsa-theme"
@@ -129,10 +130,10 @@ export function HeroSection() {
             NeetCode
           </h1>
           <p className="mt-3 text-[clamp(1.1rem,2.5vw,1.6rem)]" style={{ color: DSA.fg, opacity: 0.8, fontFamily: "JetBrains Mono, monospace" }}>
-            <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>A Better Way to Prepare
+            <span style={{ color: DSA.muted, fontSize: "0.7em" }}>// </span>{HERO_CONTENT.tagline}
           </p>
           <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed" style={{ color: DSA.muted }}>
-            Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.
+            {HERO_CONTENT.description}
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-4">

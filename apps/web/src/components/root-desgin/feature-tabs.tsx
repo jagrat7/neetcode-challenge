@@ -2,6 +2,7 @@ import { type ReactNode } from "react"
 import { InteractiveWalkthrough } from "./interactive-walkthrough"
 import { VideoSolutionsPanel } from "./video-solutions-panel"
 import { NeetBotChat } from "./neet-bot-chat"
+import { CodeEditorPanel } from "./code-editor-panel"
 import { Squiggle, WhiteboardFrame } from "./layout"
 
 interface Feature {
@@ -9,17 +10,22 @@ interface Feature {
   title: string
   description: string
   color: string
-  span: string
   content: ReactNode
 }
 
 const FEATURES: Feature[] = [
   {
+    id: "04",
+    title: "Code Editor",
+    description: "Write, test, and run your code right in the browser. Supports Python, Java, C++, JavaScript, and more.",
+    color: "#CA8A04",
+    content: <CodeEditorPanel />,
+  },
+  {
     id: "01",
     title: "Interactive Walkthroughs",
     description: "Step through algorithms visually. Watch pointers move, hash maps fill, and solutions emerge — all interactive.",
     color: "#2563EB",
-    span: "md:col-span-7",
     content: <InteractiveWalkthrough />,
   },
   {
@@ -27,7 +33,6 @@ const FEATURES: Feature[] = [
     title: "Video Solutions",
     description: "1000+ video explanations covering every major topic, from arrays to advanced graph algorithms.",
     color: "#DC2626",
-    span: "md:col-span-5",
     content: <VideoSolutionsPanel />,
   },
   {
@@ -35,9 +40,9 @@ const FEATURES: Feature[] = [
     title: "NeetBot AI",
     description: "Your personal AI coding tutor. Get hints, not answers — learn to think through problems the right way.",
     color: "#16A34A",
-    span: "md:col-span-12",
     content: <NeetBotChat />,
   },
+
 ]
 
 export function FeatureTabs() {
@@ -55,12 +60,12 @@ export function FeatureTabs() {
           <Squiggle color="#2563EB" className="mt-1 h-1.5 w-32" />
         </div>
 
-        {/* Bento grid */}
-        <div className="grid gap-7 md:grid-cols-12">
+        {/* Uniform 3-column grid */}
+        <div className="grid gap-7 md:grid-cols-2">
           {FEATURES.map((feature) => (
             <div
               key={feature.id}
-              className={`group relative mb-2 flex flex-col bg-white p-6 ${feature.span}`}
+              className="group relative mb-2 flex h-[500px] flex-col bg-white p-6"
               style={{ boxShadow: "2px 3px 0 rgba(30,41,59,0.06)" }}
             >
               <WhiteboardFrame />

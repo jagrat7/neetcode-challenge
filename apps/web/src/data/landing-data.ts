@@ -1,3 +1,5 @@
+import { Code2, Server, Terminal, Braces, Blocks } from "lucide-react"
+
 export const TOPICS = [
   "Arrays & Hashing",
   "Two Pointers",
@@ -67,6 +69,7 @@ export const TESTIMONIALS = [
 export const COURSE_CATEGORIES = [
   {
     title: "Data Structures & Algorithms",
+    icon: Code2,
     description:
       "Follow a structured path to learn all of the core data structures & algorithms. Perfect for coding interview preparation.",
     courses: [
@@ -88,6 +91,7 @@ export const COURSE_CATEGORIES = [
   },
   {
     title: "System Design",
+    icon: Server,
     description:
       "Brush up on core system design concepts for designing robust backend systems.",
     courses: [
@@ -109,6 +113,7 @@ export const COURSE_CATEGORIES = [
   },
   {
     title: "Python",
+    icon: Terminal,
     description:
       "Learn the Python programming language with interactive coding lessons.",
     courses: [
@@ -137,6 +142,7 @@ export const COURSE_CATEGORIES = [
   },
   {
     title: "Full Stack Development",
+    icon: Blocks,
     description:
       "Choose from a variety of skills involved in full stack development.",
     courses: [
@@ -158,6 +164,7 @@ export const COURSE_CATEGORIES = [
   },
   {
     title: "Object Oriented Design",
+    icon: Braces,
     description:
       "Dive deeper into object-oriented programming by focusing on design patterns and principles.",
     courses: [
@@ -197,3 +204,8 @@ export const FOUNDER_COMPANIES = [
   { name: "Amazon", logo: "/images/logos/amazon.png" },
   { name: "Google", logo: "/images/logos/google.svg" },
 ]
+
+export const HERO_CONTENT = {
+  tagline: "A Better Way to Prepare",
+  description: "Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.",
+}
