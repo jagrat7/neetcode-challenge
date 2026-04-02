@@ -8,7 +8,7 @@ export function CodeEditorPanel() {
           <div className="flex size-6 items-center justify-center border border-[#CA8A04] bg-[#CA8A04]/10">
             <Code2 className="size-3.5 text-[#CA8A04]" />
           </div>
-          <span className="text-sm font-bold text-[#CA8A04]" style={{ fontFamily: "Caveat, cursive" }}>two_sum.py</span>
+          <span className="text-sm font-bold text-[#CA8A04]" >two_sum.py</span>
           <span className="text-[10px] text-[#94A3B8]">Interactive Editor</span>
         </div>
         <div className="flex gap-1.5">

@@ -18,7 +18,7 @@ export function CoursesSection() {
     content: (
       <div className="flex flex-col gap-4">
         <h3
-          className="text-2xl font-bold text-[#1E293B]"
+          className="text-4xl font-bold text-[#1E293B]"
           style={{ fontFamily: "Caveat, cursive" }}
         >
           Table of Contents
@@ -34,20 +34,20 @@ export function CoursesSection() {
           {COURSE_CATEGORIES.map((cat, i) => (
             <div key={cat.title} className="flex items-baseline gap-2">
               <span
-                className="text-base font-bold text-[#2563EB]"
+                className="text-lg font-bold text-[#2563EB]"
                 style={{ fontFamily: "Caveat, cursive" }}
               >
                 {i + 1}.
               </span>
               <span
-                className="flex-1 text-base font-semibold text-[#1E293B]"
+                className="flex-1 text-lg font-semibold text-[#1E293B]"
                 style={{ fontFamily: "Caveat, cursive" }}
               >
                 {cat.title}
               </span>
               <span className="flex-1 border-b border-dotted border-[#CBD5E1]" />
               <span
-                className="text-sm text-[#94A3B8]"
+                className="text-base text-[#94A3B8]"
                 style={{ fontFamily: "Caveat, cursive" }}
               >
                 {cat.courses.length} courses
@@ -60,7 +60,7 @@ export function CoursesSection() {
     backContent: (
       <div className="flex size-full flex-col justify-center">
         <h3
-          className="text-3xl font-bold text-[#1E293B]"
+          className="text-4xl font-bold text-[#1E293B]"
           style={{ fontFamily: "Caveat, cursive" }}
         >
           {COURSE_CATEGORIES[0]?.title}
@@ -76,12 +76,12 @@ export function CoursesSection() {
         />
         <p
           className="mt-4 leading-relaxed text-[#64748B]"
-          style={{ fontFamily: "Caveat, cursive", fontSize: "15px" }}
+          style={{ fontFamily: "Caveat, cursive", fontSize: "18px" }}
         >
           {COURSE_CATEGORIES[0]?.description}
         </p>
         <span
-          className="mt-6 text-sm font-bold text-[#2563EB]"
+          className="mt-6 text-base font-bold text-[#2563EB]"
           style={{ fontFamily: "Caveat, cursive" }}
         >
           {COURSE_CATEGORIES[0]?.courses.length} courses →
@@ -99,7 +99,7 @@ export function CoursesSection() {
           {cat.courses.map((course) => (
             <BallpointBorder key={course.title} className="bg-white/60 p-2.5">
               <div className="flex gap-2.5">
-                <div className="h-14 w-20 shrink-0 overflow-hidden rounded-md">
+                <div className="h-28 w-36 shrink-0 overflow-hidden rounded-md">
                   <img
                     src={course.image}
                     alt={course.title}
@@ -108,21 +108,21 @@ export function CoursesSection() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <h4
-                    className="truncate text-base font-bold text-[#1E293B]"
+                    className="truncate text-lg font-bold text-[#1E293B]"
                     style={{ fontFamily: "Caveat, cursive" }}
                   >
                     {course.title}
                   </h4>
                   <div className="mt-1 flex items-center gap-2">
                     <span
-                      className="flex items-center gap-0.5 text-xs text-[#94A3B8]"
+                      className="flex items-center gap-0.5 text-sm text-[#94A3B8]"
                       style={{ fontFamily: "Caveat, cursive" }}
                     >
                       <Clock className="size-3" />
                       {course.hours}h
                     </span>
                     <span
-                      className="text-xs font-bold"
+                      className="text-sm font-bold"
                       style={{ color: DIFF_COLORS[course.difficulty], fontFamily: "Caveat, cursive" }}
                     >
                       ● {course.difficulty}
@@ -139,7 +139,7 @@ export function CoursesSection() {
           {COURSE_CATEGORIES[i + 1] && (
             <>
               <h3
-                className="text-3xl font-bold text-[#1E293B]"
+                className="text-4xl font-bold text-[#1E293B]"
                 style={{ fontFamily: "Caveat, cursive" }}
               >
                 {COURSE_CATEGORIES[i + 1].title}
@@ -155,12 +155,12 @@ export function CoursesSection() {
               />
               <p
                 className="mt-4 leading-relaxed text-[#64748B]"
-                style={{ fontFamily: "Caveat, cursive", fontSize: "15px" }}
+                style={{ fontFamily: "Caveat, cursive", fontSize: "18px" }}
               >
                 {COURSE_CATEGORIES[i + 1].description}
               </p>
               <span
-                className="mt-6 text-sm font-bold text-[#2563EB]"
+                className="mt-6 text-base font-bold text-[#2563EB]"
                 style={{ fontFamily: "Caveat, cursive" }}
               >
                 {COURSE_CATEGORIES[i + 1].courses.length} courses →
@@ -175,20 +175,20 @@ export function CoursesSection() {
   return (
     <section id="courses" className="bg-[#FAFAFA] px-6 py-16">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-start">
           <h2 className="text-3xl font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>Courses</h2>
+          <Squiggle color="#2563EB" className="mt-1 h-1.5 w-24" />
           <p className="mt-2 text-sm text-[#64748B]">Structured learning paths from fundamentals to advanced topics.</p>
-          <Squiggle color="#2563EB" className="mx-auto mt-1 h-1.5 w-24" />
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center -mt-6">
           <InteractiveBook
             coverImage="/images/courses/course-1.png"
             bookTitle="Course Catalog"
             bookAuthor="NeetCode"
             pages={[tocPage, ...coursePages]}
-            width={380}
-            height={520}
+            width={500}
+            height={650}
           />
         </div>
       </div>

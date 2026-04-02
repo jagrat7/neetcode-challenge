@@ -247,7 +247,7 @@ export default function InteractiveBook({
                                         nextPage(e, true);
                                     }}
                                 >
-                                    <div className="flex-1 flex flex-col justify-center">
+                                    <div className="flex-1 flex flex-col justify-start">
                                         <div className="text-neutral-700 leading-relaxed select-none pl-10">
                                             {page.title && (
                                                 <h3 className="text-lg font-medium mb-4 text-neutral-800 tracking-tight" style={{ fontFamily: 'Caveat, cursive' }}>
@@ -279,10 +279,10 @@ export default function InteractiveBook({
                                 >
                                     <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black/5 to-transparent pointer-events-none mix-blend-multiply" />
 
-                                    <div className="flex-1 flex flex-col justify-center overflow-hidden">
+                                    <div className="flex-1 flex flex-col justify-start overflow-hidden">
                                         <div className="text-neutral-700 leading-relaxed select-none h-full flex flex-col pl-10">
                                             {page.backContent ? (
-                                                <div className="flex-1 flex flex-col justify-center">
+                                                <div className="flex-1 flex flex-col justify-start">
                                                     {page.backContent}
                                                 </div>
                                             ) : (
@@ -369,20 +369,7 @@ export default function InteractiveBook({
                 )}
             </AnimatePresence>
 
-            {/* Close Button */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.button
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        onClick={handleCloseBook}
-                        className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white border border-neutral-200 backdrop-blur-sm text-neutral-700 z-[1000] transition-all hover:scale-110 shadow-sm"
-                    >
-                        <X size={20} />
-                    </motion.button>
-                )}
-            </AnimatePresence>
+   
 
             {/* Hint */}
             {!isOpen && (

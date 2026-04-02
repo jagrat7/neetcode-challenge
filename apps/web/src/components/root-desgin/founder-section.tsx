@@ -7,8 +7,15 @@ export function FounderSection() {
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 md:flex-row md:items-start">
         {/* Portrait in hand-drawn circle frame */}
         <div className="relative shrink-0">
-          <svg className="absolute -inset-4 size-[calc(100%+32px)]" viewBox="0 0 200 200" fill="none">
-            <ellipse cx="100" cy="100" rx="92" ry="90" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 4" transform="rotate(-3 100 100)" />
+          <svg className="absolute -inset-12 size-[calc(100%+96px)]" viewBox="0 0 300 300" fill="none">
+            <path
+              d="M135 18 C185 12, 248 38, 272 85 C296 132, 288 198, 258 242 C228 286, 170 292, 120 278 C70 264, 22 222, 16 168 C10 114, 38 58, 88 35 C138 12, 210 22, 258 68 C306 114"
+              stroke="#2563EB"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
           </svg>
           <img src="/images/brand/navi.png" alt="Navi" className="relative size-100 rounded-full object-cover" />
         </div>

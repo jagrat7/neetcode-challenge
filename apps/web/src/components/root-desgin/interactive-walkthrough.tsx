@@ -60,7 +60,7 @@ export function InteractiveWalkthrough() {
   return (
     <div className="flex h-[340px] flex-col border-2 border-dashed border-[#CBD5E1] bg-white p-4">
       <div className="mb-3 flex items-center justify-between">
-        <span className="text-sm font-bold text-[#2563EB]" style={{ fontFamily: "Caveat, cursive" }}>Two Sum — Interactive Walkthrough</span>
+        <span className="text-sm font-bold text-[#2563EB]">Three Sum</span>
         <span className="text-[10px] text-[#94A3B8]">Step {step + 1}/{WALKTHROUGH_STEPS.length}</span>
       </div>
 

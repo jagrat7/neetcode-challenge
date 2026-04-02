@@ -6,7 +6,7 @@ import { HERO_CONTENT } from "../../data/landing-data"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden px-6 pb-32 pt-24 md:pt-36">
+    <section className="relative flex min-h-[75vh] flex-col justify-center overflow-hidden px-6 py-16">
       <InteractiveGridPattern
         squares={[30, 20]}
         className="pointer-events-auto opacity-60 [mask-image:radial-gradient(ellipse_at_center,white_40%,transparent_80%)]"

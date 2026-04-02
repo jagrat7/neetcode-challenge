@@ -54,10 +54,10 @@ export function FeatureTabs() {
           <h2 className="text-3xl font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>
             More Than Just Problems
           </h2>
-          <p className="mt-2 text-sm text-[#64748B]">
-            Three tools that replace scattered resources, provide structure, and give instant feedback.
-          </p>
           <Squiggle color="#2563EB" className="mt-1 h-1.5 w-32" />
+          <p className="mt-2 text-sm text-[#64748B]">
+            Tools that replace scattered resources, provide structure, and give instant feedback.
+          </p>
         </div>
 
         {/* Uniform 3-column grid */}

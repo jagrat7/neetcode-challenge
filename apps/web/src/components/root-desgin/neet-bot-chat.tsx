@@ -7,7 +7,7 @@ export function NeetBotChat() {
         <div className="flex size-6 items-center justify-center border border-[#16A34A] bg-[#16A34A]/10">
           <Bot className="size-3.5 text-[#16A34A]" />
         </div>
-        <span className="text-sm font-bold text-[#16A34A]" style={{ fontFamily: "Caveat, cursive" }}>NeetBot AI</span>
+        <span className="text-sm font-bold text-[#16A34A]">NeetBot AI</span>
         <span className="text-[10px] text-[#94A3B8]">Your AI coding tutor</span>
       </div>
 
