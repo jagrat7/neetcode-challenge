@@ -29,11 +29,11 @@ export function HeroSection() {
         </div>
 
         <div className="mt-10 flex items-center justify-center gap-4">
-          <Button size="lg" className="pointer-events-auto rounded-none border-2 border-[#2563EB] bg-[#2563EB] px-8 text-white shadow-[3px_3px_0px_#1E293B] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#1E293B]">
+          <Button size="lg" className="pointer-events-auto h-11 rounded-none border-2 border-[#2563EB] bg-[#2563EB] px-8 text-white transition-all hover:bg-[#1D4ED8]">
             <Rocket className="size-4" />
             Get Pro
           </Button>
-          <Button variant="secondary" size="lg" className="pointer-events-auto rounded-none border-2 border-[#1E293B] px-8 text-[#1E293B] bg-[#1E293B]/5">
+          <Button variant="secondary" size="lg" className="pointer-events-auto h-11 rounded-none border-2 border-[#1E293B]  px-8 text-[#1E293B] bg-/5 transition-all ">
             Start Free
           </Button>
         </div>

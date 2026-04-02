@@ -10,7 +10,7 @@ interface Feature {
   title: string
   description: string
   color: string
-  content: ReactNode
+  content: (color: string) => ReactNode
 }
 
 const FEATURES: Feature[] = [
@@ -19,28 +19,28 @@ const FEATURES: Feature[] = [
     title: "Code Editor",
     description: "Write, test, and run your code right in the browser. Supports Python, Java, C++, JavaScript, and more.",
     color: "#CA8A04",
-    content: <CodeEditorPanel />,
+    content: (color) => <CodeEditorPanel color={color} />,
   },
   {
     id: "01",
     title: "Interactive Walkthroughs",
     description: "Step through algorithms visually. Watch pointers move, hash maps fill, and solutions emerge — all interactive.",
     color: "#2563EB",
-    content: <InteractiveWalkthrough />,
+    content: (color) => <InteractiveWalkthrough color={color} />,
   },
   {
     id: "02",
     title: "Video Solutions",
     description: "1000+ video explanations covering every major topic, from arrays to advanced graph algorithms.",
     color: "#DC2626",
-    content: <VideoSolutionsPanel />,
+    content: (color) => <VideoSolutionsPanel color={color} />,
   },
   {
     id: "03",
     title: "NeetBot AI",
     description: "Your personal AI coding tutor. Get hints, not answers — learn to think through problems the right way.",
     color: "#16A34A",
-    content: <NeetBotChat />,
+    content: (color) => <NeetBotChat color={color} />,
   },
 
 ]
@@ -70,20 +70,19 @@ export function FeatureTabs() {
             >
               <WhiteboardFrame />
 
-              {/* Top accent marker line */}
-              <div className="mb-4 h-[3px] w-12 rounded-full" style={{ backgroundColor: feature.color, opacity: 0.5 }} />
 
               {/* Text */}
-              <h3 className="text-lg font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>
+              <h3 className="text-xl font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>
                 {feature.title}
               </h3>
+              <Squiggle color={feature.color} className="mb-1 h-1.5 w-16" />
               <p className="mt-1 text-xs leading-relaxed text-[#64748B]">
                 {feature.description}
               </p>
 
               {/* Interactive demo */}
               <div className="mt-4 flex-1">
-                {feature.content}
+                {feature.content(feature.color)}
               </div>
             </div>
           ))}

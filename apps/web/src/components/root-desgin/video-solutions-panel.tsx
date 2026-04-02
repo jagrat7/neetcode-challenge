@@ -1,6 +1,6 @@
 import { Play } from "lucide-react"
 
-export function VideoSolutionsPanel() {
+export function VideoSolutionsPanel({ color = "#DC2626" }: { color?: string }) {
   const chapters = [
     { name: "Arrays", count: 9 },
     { name: "Two Pointers", count: 5 },
@@ -15,7 +15,7 @@ export function VideoSolutionsPanel() {
     <div className=" bg-white">
  
       {/* YouTube embed */}
-      <div className="relative mb-4 aspect-video w-full overflow-hidden border-2 border-[#CBD5E1] bg-[#0F172A]">
+      <div className="relative mb-4 aspect-video w-full overflow-hidden border-2 bg-[#0F172A]" style={{ borderColor: `${color}40` }}>
         <iframe
           src="https://www.youtube.com/embed/lXVy6YWFcRM"
           title="NeetCode Video Solution"

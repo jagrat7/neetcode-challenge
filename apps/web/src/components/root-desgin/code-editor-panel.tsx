@@ -1,9 +1,9 @@
 import { Play, Code2 } from "lucide-react"
 
-export function CodeEditorPanel() {
+export function CodeEditorPanel({ color = "#CA8A04" }: { color?: string }) {
   return (
-    <div className="flex h-[340px] flex-col border-2 border-dashed border-[#CBD5E1] bg-[#FAFAFA]">
-      <div className="flex items-center justify-between border-b border-dashed border-[#CBD5E1] bg-white px-4 py-3">
+    <div className="flex h-[340px] flex-col border-2 border-dashed bg-[#FAFAFA]" style={{ borderColor: `${color}40` }}>
+      <div className="flex items-center justify-between border-b bg-white px-4 py-3" style={{ borderColor: `${color}40` }}>
         <div className="flex items-center gap-2">
           <div className="flex size-6 items-center justify-center border border-[#CA8A04] bg-[#CA8A04]/10">
             <Code2 className="size-3.5 text-[#CA8A04]" />
@@ -37,7 +37,7 @@ export function CodeEditorPanel() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between border-t border-dashed border-[#CBD5E1] bg-white px-4 py-3">
+      <div className="flex items-center justify-between border-t border-dashed bg-white px-4 py-3" style={{ borderColor: `${color}40` }}>
         <div className="flex items-center gap-2">
           <div className="flex size-2 items-center justify-center rounded-full bg-[#16A34A]" />
           <span className="text-[10px] font-mono text-[#94A3B8]">Python 3 Ready</span>

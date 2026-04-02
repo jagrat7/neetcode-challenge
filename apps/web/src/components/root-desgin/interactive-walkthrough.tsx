@@ -29,7 +29,7 @@ function buildSteps(): WalkthroughStep[] {
 
 const WALKTHROUGH_STEPS = buildSteps()
 
-export function InteractiveWalkthrough() {
+export function InteractiveWalkthrough({ color = "#2563EB" }: { color?: string }) {
   const [step, setStep] = useState(0)
   const [playing, setPlaying] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -58,7 +58,7 @@ export function InteractiveWalkthrough() {
   useEffect(() => () => { if (intervalRef.current) clearInterval(intervalRef.current) }, [])
 
   return (
-    <div className="flex h-[340px] flex-col border-2 border-dashed border-[#CBD5E1] bg-white p-4">
+    <div className="flex h-[340px] flex-col border-2 border-dashed bg-white p-4" style={{ borderColor: `${color}40` }}>
       <div className="mb-3 flex items-center justify-between">
         <span className="text-sm font-bold text-[#2563EB]">Three Sum</span>
         <span className="text-[10px] text-[#94A3B8]">Step {step + 1}/{WALKTHROUGH_STEPS.length}</span>
