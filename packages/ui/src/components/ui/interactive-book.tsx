@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@my-better-t-app/ui/lib/utils';
 import { ChevronLeft, ChevronRight, RefreshCcw, X, BookOpen } from 'lucide-react';
 
@@ -13,7 +13,7 @@ export interface BookPage {
 }
 
 export interface InteractiveBookProps {
-    coverImage: string;
+    coverImage?: string;
     bookTitle?: string;
     bookAuthor?: string;
     pages: BookPage[];
@@ -23,17 +23,52 @@ export interface InteractiveBookProps {
 }
 
 export default function InteractiveBook({
-    coverImage,
-    bookTitle = "Book Title",
-    bookAuthor = "Author Name",
+    coverImage: _coverImage,
+    bookTitle: _bookTitle,
+    bookAuthor: _bookAuthor,
     pages,
     className,
     width = 350,
     height = 500,
 }: InteractiveBookProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+    
+    // Open book when 20% in view (scrollYProgress >= 0.2)
+    const scrollOpen = useTransform(scrollYProgress, [0, 0.2, 0.3], [0, 0, 1]);
+    
     const [isOpen, setIsOpen] = useState(false);
+    const [isAutoFlipping, setIsAutoFlipping] = useState(false);
     const [currentPageIndex, setCurrentPageIndex] = useState(-1);
     const [isHovering, setIsHovering] = useState(false);
+
+    // Sync scroll-based open state
+    useEffect(() => {
+        const unsubscribe = scrollOpen.on("change", (latest) => {
+            if (latest >= 0.5 && !isOpen) {
+                setIsOpen(true);
+                setIsAutoFlipping(true);
+            }
+        });
+        return () => unsubscribe();
+    }, [scrollOpen, isOpen]);
+
+    useEffect(() => {
+        if (!isOpen || !isAutoFlipping) return
+        if (currentPageIndex >= pages.length - 1) {
+            setIsAutoFlipping(false)
+            return
+        }
+
+        const timeout = window.setTimeout(() => {
+            nextPage()
+        }, 2500)
+
+        return () => window.clearTimeout(timeout)
+    }, [isOpen, isAutoFlipping, currentPageIndex, pages.length])
 
     // Calculate dynamic width/height values for animations
     const widthNum = typeof width === 'number' ? width : 350;
@@ -42,30 +77,43 @@ export default function InteractiveBook({
     const BOOK_OPEN_DURATION = 1.5;
     const EASING: [number, number, number, number] = [0.25, 0, 0, 1]; // milder smoothing
 
-    const handleOpenBook = () => setIsOpen(true);
+    const handleOpenBook = () => {
+        setIsOpen(true)
+        setIsAutoFlipping(true)
+    }
 
     const handleCloseBook = (e?: React.MouseEvent) => {
         e?.stopPropagation();
+        setIsAutoFlipping(false)
         setIsOpen(false);
         setCurrentPageIndex(-1);
     };
 
-    const nextPage = (e?: React.MouseEvent) => {
+    const nextPage = (e?: React.MouseEvent, userInitiated = false) => {
         e?.stopPropagation();
+        if (userInitiated) {
+            setIsAutoFlipping(false)
+        }
         if (currentPageIndex < pages.length - 1) {
             setCurrentPageIndex((prev) => prev + 1);
         }
     };
 
-    const prevPage = (e?: React.MouseEvent) => {
+    const prevPage = (e?: React.MouseEvent, userInitiated = false) => {
         e?.stopPropagation();
+        if (userInitiated) {
+            setIsAutoFlipping(false)
+        }
         if (currentPageIndex >= 0) {
             setCurrentPageIndex((prev) => prev - 1);
         }
     };
 
-    const restartBook = (e?: React.MouseEvent) => {
+    const restartBook = (e?: React.MouseEvent, userInitiated = false) => {
         e?.stopPropagation();
+        if (userInitiated) {
+            setIsAutoFlipping(false)
+        }
         setCurrentPageIndex(-1);
     };
 
@@ -87,6 +135,7 @@ export default function InteractiveBook({
 
     return (
         <div
+            ref={containerRef}
             className={cn("relative flex items-center justify-center perspective-[2000px]", className)}
             style={{
                 width: typeof width === 'number' ? width * 3.5 : '100%',
@@ -120,42 +169,42 @@ export default function InteractiveBook({
                     onHoverStart={() => !isOpen && setIsHovering(true)}
                     onHoverEnd={() => setIsHovering(false)}
                 >
-                    {/* Front Face */}
+                    {/* Front Face - Raw notebook cover */}
                     <div
-                        className="absolute inset-0 w-full h-full backface-hidden rounded-r-md rounded-l-sm shadow-2xl cursor-pointer overflow-hidden group"
-                        style={{ transform: 'translateZ(0.5px)' }}
+                        className="absolute inset-0 w-full h-full backface-hidden rounded-r-md rounded-l-sm shadow-2xl cursor-pointer overflow-hidden"
+                        style={{
+                            transform: 'translateZ(0.5px)',
+                            background: 'linear-gradient(145deg, #1E293B 0%, #0F172A 100%)',
+                        }}
                     >
-                        {/* Image Background */}
-                        <div
-                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                            style={{ backgroundImage: `url(${coverImage})` }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                        <div className="absolute bottom-4 left-3 right-3 text-white text-left">
-                            <h1 className="text-sm font-serif font-bold tracking-wide mb-1 drop-shadow-md leading-tight">{bookTitle}</h1>
-                            <p className="text-[8px] font-sans tracking-widest opacity-90 uppercase border-t border-white/30 pt-1 inline-block">{bookAuthor}</p>
-                        </div>
+                        {/* Subtle texture */}
+                        <div className="absolute inset-0 opacity-[0.04]" style={{
+                            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+                            backgroundSize: '16px 16px',
+                        }} />
 
                         {/* Spine Highlight */}
-                        <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-white/30 to-transparent opacity-40" />
-                        <div className="absolute left-[12px] top-0 bottom-0 w-[1px] bg-black/30" />
+                        <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-white/10 to-transparent" />
+                        <div className="absolute left-[12px] top-0 bottom-0 w-[1px] bg-white/10" />
+
+                        {/* Edge wear */}
+                        <div className="absolute inset-0 rounded-r-md rounded-l-sm border border-white/5" />
                     </div>
 
                     {/* Back Face (Inner Cover) */}
                     <div
-                        className="absolute inset-0 w-full h-full backface-hidden rounded-l-md rounded-r-sm bg-[#ffffff] rotate-y-180 flex flex-col p-8 border-r border-neutral-200 shadow-xl cursor-pointer hover:bg-[#fafafa] transition-colors"
+                        className="absolute inset-0 w-full h-full backface-hidden rounded-l-md rounded-r-sm bg-[#1E293B] rotate-y-180 flex flex-col border-r border-neutral-700 shadow-xl cursor-pointer"
                         style={{ transform: 'rotateY(180deg) translateZ(0.5px)' }}
                         onClick={(e) => {
                             e.stopPropagation();
-                            prevPage();
+                            prevPage(e, true);
                         }}
                     >
-                        <div className="flex-1 flex flex-col justify-center items-center text-center opacity-80">
-                            <h2 className="text-2xl font-serif text-neutral-800 mb-2 tracking-wide">{bookTitle}</h2>
-                            <div className="w-8 h-[1px] bg-neutral-300 mb-3" />
-                            <p className="text-xs text-neutral-500 uppercase tracking-widest">Interactive Edition</p>
-                        </div>
+                        {/* Plain dark inner cover */}
+                        <div className="absolute inset-0 opacity-[0.03]" style={{
+                            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+                            backgroundSize: '16px 16px',
+                        }} />
                     </div>
                 </motion.div>
 
@@ -195,11 +244,11 @@ export default function InteractiveBook({
                                     }}
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        nextPage();
+                                        nextPage(e, true);
                                     }}
                                 >
-                                    <div className="flex-1">
-                                        <div className="prose prose-neutral prose-sm max-w-none text-neutral-700 leading-relaxed select-none pl-10">
+                                    <div className="flex-1 flex flex-col justify-center">
+                                        <div className="text-neutral-700 leading-relaxed select-none pl-10">
                                             {page.title && (
                                                 <h3 className="text-lg font-medium mb-4 text-neutral-800 tracking-tight" style={{ fontFamily: 'Caveat, cursive' }}>
                                                     {page.title}
@@ -209,7 +258,6 @@ export default function InteractiveBook({
                                         </div>
                                     </div>
                                     <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-black/5 to-transparent pointer-events-none mix-blend-multiply" />
-                             
                                 </div>
 
                                 {/* Back Face (Left Side) */}
@@ -226,16 +274,15 @@ export default function InteractiveBook({
                                     }}
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        prevPage();
+                                        prevPage(e, true);
                                     }}
                                 >
                                     <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black/5 to-transparent pointer-events-none mix-blend-multiply" />
 
-                                    <div className="flex-1 overflow-hidden">
-                                 
-                                        <div className="prose prose-neutral prose-sm max-w-none text-neutral-700 leading-relaxed select-none h-full flex flex-col pl-10">
+                                    <div className="flex-1 flex flex-col justify-center overflow-hidden">
+                                        <div className="text-neutral-700 leading-relaxed select-none h-full flex flex-col pl-10">
                                             {page.backContent ? (
-                                                <div className="flex-1">
+                                                <div className="flex-1 flex flex-col justify-center">
                                                     {page.backContent}
                                                 </div>
                                             ) : (
@@ -247,7 +294,6 @@ export default function InteractiveBook({
                                             )}
                                         </div>
                                     </div>
-                               
                                 </div>
                             </motion.div>
                         );
@@ -260,14 +306,12 @@ export default function InteractiveBook({
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900" />
                         <div className="absolute inset-0 p-8 flex flex-col items-center justify-center text-center">
-                            <p className="text-2xl font-bold text-white/90 italic" style={{ fontFamily: 'Caveat, cursive' }}>The End</p>
-                            <div className="w-16 h-[1px] bg-white/30 my-4" />
-                            <button
+                            {/* <button
                                 onClick={restartBook}
                                 className="mt-2 flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-sm text-white/80 cursor-pointer border border-white/20"
                             >
                                 <RefreshCcw size={14} /> Read Again
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>
@@ -276,21 +320,67 @@ export default function InteractiveBook({
 
             </motion.div>
 
-            {/* Side Navigation Arrows */}
+            {/* Navigation Controls - Below the book */}
             <AnimatePresence>
                 {isOpen && (
-                    <>
-                        {/* Close Button */}
-                        <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            onClick={handleCloseBook}
-                            className="absolute top-8 right-8 p-2 rounded-full bg-white/50 dark:bg-neutral-800/50 hover:bg-white dark:hover:bg-neutral-800 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 backdrop-blur-sm text-neutral-800 dark:text-neutral-100 z-[1000] transition-all hover:scale-110 shadow-sm hover:shadow-xl"
-                        >
-                            <X size={24} />
-                        </motion.button>
-                    </>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        transition={{ delay: 0.3 }}
+                        className="absolute -bottom-12 left-0 right-0 flex justify-center items-center gap-6 z-[1000]"
+                    >
+                        {/* Left Button: Close at start, Prev otherwise */}
+                        {currentPageIndex < 0 ? (
+                            <button
+                                onClick={handleCloseBook}
+                                className="p-3 rounded-full bg-white/90 hover:bg-white border border-neutral-200 text-neutral-700 transition-all hover:scale-110 shadow-md"
+                            >
+                                <X size={24} />
+                            </button>
+                        ) : (
+                            <button
+                                onClick={(e) => prevPage(e, true)}
+                                className="p-3 rounded-full bg-white/90 hover:bg-white border border-neutral-200 text-neutral-700 transition-all hover:scale-110 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+                                disabled={currentPageIndex < 0}
+                            >
+                                <ChevronLeft size={24} />
+                            </button>
+                        )}
+
+                        {/* Right Button: Restart at end, Next otherwise */}
+                        {currentPageIndex >= pages.length - 1 ? (
+                            <button
+                                onClick={(e) => restartBook(e, true)}
+                                className="p-3 rounded-full bg-white/90 hover:bg-white border border-neutral-200 text-neutral-700 transition-all hover:scale-110 shadow-md"
+                            >
+                                <RefreshCcw size={24} />
+                            </button>
+                        ) : (
+                            <button
+                                onClick={(e) => nextPage(e, true)}
+                                className="p-3 rounded-full bg-white/90 hover:bg-white border border-neutral-200 text-neutral-700 transition-all hover:scale-110 shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+                                disabled={currentPageIndex >= pages.length - 1}
+                            >
+                                <ChevronRight size={24} />
+                            </button>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Close Button */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        onClick={handleCloseBook}
+                        className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white border border-neutral-200 backdrop-blur-sm text-neutral-700 z-[1000] transition-all hover:scale-110 shadow-sm"
+                    >
+                        <X size={20} />
+                    </motion.button>
                 )}
             </AnimatePresence>
 
