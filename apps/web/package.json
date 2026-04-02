@@ -16,6 +16,7 @@
     "@react-router/serve": "^7.10.1",
     "@thesvg/react": "^2.1.1",
     "dotenv": "catalog:",
+    "framer-motion": "^12.38.0",
     "isbot": "^5.1.28",
     "lucide-react": "catalog:",
     "next-themes": "catalog:",
