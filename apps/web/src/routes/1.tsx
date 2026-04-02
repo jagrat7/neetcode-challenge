@@ -20,9 +20,9 @@ export default function DSAVisualLanding() {
           <HeroSection />
           {/* <TopicNetwork /> */}
           <CompanyLogosSection />
-          <FeaturesSection />
           <TestimonialsSection />
           <CoursesSection />
+          {/* <FeaturesSection /> */}
           <PracticeSection />
           <FounderSection />
         </main>

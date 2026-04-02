@@ -1,5 +1,8 @@
+"use client"
+
 import { CyberGlitchText } from "@my-better-t-app/ui/components/ui/cyber-glitch-text"
 import { Clock } from "lucide-react"
+import { motion } from "framer-motion"
 
 import { COURSE_CATEGORIES } from "../../data/landing-data"
 import { CodeSectionBlock } from "./code-section-block"
@@ -10,7 +13,7 @@ export function CoursesSection() {
     <section id="courses" className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
       <CodeSectionBlock
         className="mx-auto max-w-5xl"
-        duration={18}
+        duration={1}
         label="HashMap<Category, Course[]>.entries()"
         labelClassName="mb-1 text-[11px]"
         labelStyle={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}
@@ -26,7 +29,14 @@ export function CoursesSection() {
 
         <div className="space-y-10">
           {COURSE_CATEGORIES.map((cat, ci) => (
-            <div key={cat.title} className="flex gap-4">
+            <motion.div
+              key={cat.title}
+              className="flex gap-4"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: ci * 0.15, ease: "easeOut" }}
+            >
               <div className="hidden w-44 shrink-0 md:block">
                 <div className="sticky top-20 rounded-lg p-3" style={{ backgroundColor: DSA.card, border: `1px solid ${DSA.border}` }}>
                   <div className="mb-1 text-[10px]" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
@@ -74,7 +84,7 @@ export function CoursesSection() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </CodeSectionBlock>

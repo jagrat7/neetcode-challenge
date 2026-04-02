@@ -17,7 +17,7 @@ export function FounderSection() {
         <div className="flex flex-col items-center gap-8 md:flex-row md:items-start">
           <div className="relative shrink-0">
             <div className="rounded-full p-1" style={{ border: `2px solid ${DSA.current}` }}>
-              <img src="/images/brand/navi.png" alt="Navi" className="size-28 rounded-full object-cover" />
+              <img src="/images/brand/navi.png" alt="Navi" className="size-60 rounded-full object-cover" />
             </div>
             <div className="absolute -bottom-1 -right-1 rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ backgroundColor: DSA.current, color: DSA.bg }}>
               HEAD

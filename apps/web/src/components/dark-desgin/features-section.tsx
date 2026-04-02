@@ -1,62 +1,161 @@
-import { useState, useCallback, useEffect, useRef, type ReactNode } from "react"
-import { InteractiveWalkthrough } from "./interactive-walkthrough"
-import { VideoSolutionsPanel } from "./video-solutions-panel"
-import { NeetBotChat } from "./neet-bot-chat"
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { DSA } from "./dsa-theme"
 import { CyberGlitchText } from "@my-better-t-app/ui/components/ui/cyber-glitch-text"
 import { CodeSectionBlock } from "./code-section-block"
 
-interface FeatureTab {
-  id: string
-  title: string
-  description: string
-  color: string
-  content: ReactNode
+type FeatureItem = {
+  id: number;
+  url: string;
+  title: string;
+  description: string;
+  color: string;
+  isVideo?: boolean;
+  videoUrl?: string;
+};
+
+const FEATURES: FeatureItem[] = [
+  {
+    id: 1,
+    url: '/images/features/interactive-soltions.png',
+    title: 'Interactive Walkthroughs',
+    description:
+      'Step through algorithms visually. Watch pointers move, hash maps fill, and solutions emerge.',
+    color: DSA.visited,
+  },
+  {
+    id: 2,
+    url: '/images/features/functional-editor.png',
+    title: 'Functional Code Editor',
+    description:
+      'Write, run, and debug code in a full-featured editor with syntax highlighting and test cases.',
+    color: DSA.queued,
+  },
+  {
+    id: 3,
+    url: '/images/features/neetbot.png',
+    title: 'NeetBot AI',
+    description:
+      "Your personal AI coding tutor. Get hints, not answers — learn to think through problems the right way.",
+    color: DSA.current,
+  },
+  {
+    id: 4,
+    url: '/images/features/neetbot.png',
+    title: 'Video Solutions',
+    description:
+      "1000+ video explanations covering every major topic, from arrays to advanced graph algorithms.",
+    color: DSA.red,
+    isVideo: true,
+    videoUrl: 'https://www.youtube.com/embed/lXVy6YWFcRM',
+  },
+] as const;
+
+const article = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 100,
+      delayChildren: 0.2,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+function Gallery({ items }: { items: FeatureItem[] }) {
+  const [index, setIndex] = useState<number | undefined>(0);
+
+  return (
+    <div className='w-full flex justify-start gap-2 pb-20'>
+      {items.map((item, i) => {
+        const isActive = index === i;
+        return (
+          <motion.div
+            whileTap={{ scale: 0.95 }}
+            className={`rounded-xl relative overflow-hidden transition-[width] ease-in-out duration-500 origin-center`}
+            style={{
+              width: isActive ? 600 : 80,
+              height: 400,
+              flexShrink: 0,
+              backgroundColor: DSA.card,
+              border: `1px solid ${DSA.border}`,
+            }}
+            key={item.id}
+            onClick={() => setIndex(i)}
+            onMouseEnter={() => setIndex(i)}
+          >
+            {item.isVideo ? (
+              <iframe
+                src={item.videoUrl}
+                title={item.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={`w-full h-full object-cover ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
+              />
+            ) : (
+              <motion.img
+                src={item.url}
+                alt={item.title}
+                className={`w-full h-full object-cover ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
+              />
+            )}
+            <AnimatePresence mode='wait'>
+              {isActive && (
+                <motion.article
+                  variants={article}
+                  initial='hidden'
+                  animate='show'
+                  exit={{ opacity: 0, y: 10 }}
+                  className='absolute flex rounded-xl flex-col justify-end h-full top-0 p-4 space-y-2 overflow-hidden'
+                  style={{
+                    background: `linear-gradient(to top, ${DSA.bg}ee 0%, ${DSA.bg}99 20%, transparent 80%)`,
+                  }}
+                >
+                  <motion.div
+                    variants={article}
+                    className="flex items-center gap-2 mb-1"
+                  >
+                    <span
+                      className="flex size-5 shrink-0 items-center justify-center rounded text-[9px] font-bold"
+                      style={{
+                        backgroundColor: `${item.color}15`,
+                        color: item.color,
+                        fontFamily: "JetBrains Mono, monospace",
+                      }}
+                    >
+                      {String(item.id).padStart(2, '0')}
+                    </span>
+                    <motion.h1
+                      variants={article}
+                      className='text-lg font-semibold'
+                      style={{ color: item.color, fontFamily: "JetBrains Mono, monospace" }}
+                    >
+                      {item.title}
+                    </motion.h1>
+                  </motion.div>
+                  <motion.p
+                    variants={article}
+                    className='text-xs leading-relaxed'
+                    style={{ color: DSA.muted }}
+                  >
+                    {item.description}
+                  </motion.p>
+                </motion.article>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
 }
 
-const TABS: FeatureTab[] = [
-  {
-    id: "01",
-    title: "Interactive Walkthroughs",
-    description: "Step through algorithms visually. Watch pointers move, hash maps fill, and solutions emerge — all interactive.",
-    color: DSA.visited,
-    content: <InteractiveWalkthrough />,
-  },
-  {
-    id: "02",
-    title: "Video Solutions",
-    description: "1000+ video explanations covering every major topic, from arrays to advanced graph algorithms.",
-    color: DSA.red,
-    content: <VideoSolutionsPanel />,
-  },
-  {
-    id: "03",
-    title: "NeetBot AI",
-    description: "Your personal AI coding tutor. Get hints, not answers — learn to think through problems the right way.",
-    color: DSA.current,
-    content: <NeetBotChat />,
-  },
-]
-
-const AUTO_PLAY_MS = 8000
-
 export function FeaturesSection() {
-  const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  const advance = useCallback(() => {
-    setActive((p) => (p + 1) % TABS.length)
-  }, [])
-
-  useEffect(() => {
-    if (paused) return
-    timerRef.current = setInterval(advance, AUTO_PLAY_MS)
-    return () => { if (timerRef.current) clearInterval(timerRef.current) }
-  }, [active, paused, advance])
-
-  const tab = TABS[active]
-
   return (
     <section className="px-6 py-16" style={{ backgroundColor: DSA.bg }}>
       <CodeSectionBlock
@@ -76,88 +175,8 @@ export function FeaturesSection() {
           </p>
         </div>
 
-        <div className="grid items-start gap-8 lg:grid-cols-12">
-          {/* Left: tab buttons */}
-          <div className="lg:col-span-4">
-            <p className="mb-4 text-xs" style={{ color: DSA.muted, fontFamily: "JetBrains Mono, monospace" }}>
-              // select feature
-            </p>
-            <div className="space-y-3">
-              {TABS.map((t, i) => {
-                const isActive = i === active
-                return (
-                  <button
-                    key={t.id}
-                    onClick={() => { setActive(i); setPaused(false) }}
-                    className="group relative flex w-full items-start gap-4 rounded-lg border p-4 text-left transition-all"
-                    style={{ 
-                      backgroundColor: isActive ? DSA.card : "transparent",
-                      borderColor: isActive ? t.color : DSA.border,
-                      opacity: isActive ? 1 : 0.6
-                    }}
-                  >
-                    {/* Progress bar overlay */}
-                    {isActive && (
-                      <div className="absolute inset-0 overflow-hidden rounded-lg opacity-[0.03]">
-                         <div
-                          key={`progress-${i}-${paused}`}
-                          className="h-full w-full origin-left"
-                          style={{
-                            backgroundColor: t.color,
-                            transform: paused ? undefined : "scaleX(0)",
-                            animation: paused ? undefined : `fillX ${AUTO_PLAY_MS}ms linear forwards`,
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    <span
-                      className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-sm text-[10px] font-bold"
-                      style={{
-                        backgroundColor: isActive ? `${t.color}15` : "transparent",
-                        color: isActive ? t.color : DSA.muted,
-                        fontFamily: "JetBrains Mono, monospace"
-                      }}
-                    >
-                      {t.id}
-                    </span>
-
-                    <div className="relative z-10">
-                      <span
-                        className="text-sm font-semibold transition-colors"
-                        style={{ color: isActive ? t.color : DSA.fg }}
-                      >
-                        {t.title}
-                      </span>
-                      {isActive && (
-                        <p className="mt-2 text-xs leading-relaxed" style={{ color: DSA.muted }}>
-                          {t.description}
-                        </p>
-                      )}
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Right: active panel */}
-          <div
-            className="lg:col-span-8"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-          >
-            {tab?.content}
-          </div>
-        </div>
+        <Gallery items={FEATURES} />
       </CodeSectionBlock>
-
-      <style>{`
-        @keyframes fillX {
-          from { transform: scaleX(0); }
-          to { transform: scaleX(1); }
-        }
-      `}</style>
     </section>
-  )
+  );
 }
