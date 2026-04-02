@@ -10,7 +10,7 @@ export function FounderSection() {
           <svg className="absolute -inset-4 size-[calc(100%+32px)]" viewBox="0 0 200 200" fill="none">
             <ellipse cx="100" cy="100" rx="92" ry="90" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 4" transform="rotate(-3 100 100)" />
           </svg>
-          <img src="/images/brand/navi.png" alt="Navi" className="relative size-44 rounded-full object-cover" />
+          <img src="/images/brand/navi.png" alt="Navi" className="relative size-100 rounded-full object-cover" />
         </div>
         <div>
           <h2 className="text-3xl font-bold text-[#1E293B]" style={{ fontFamily: "Caveat, cursive" }}>Hi, I'm Navi</h2>

@@ -33,7 +33,7 @@ export function HeroSection() {
             <Rocket className="size-4" />
             Get Pro
           </Button>
-          <Button variant="outline" size="lg" className="pointer-events-auto rounded-none border-2 border-[#1E293B] px-8 text-[#1E293B] hover:bg-[#1E293B]/5">
+          <Button variant="secondary" size="lg" className="pointer-events-auto rounded-none border-2 border-[#1E293B] px-8 text-[#1E293B] bg-[#1E293B]/5">
             Start Free
           </Button>
         </div>

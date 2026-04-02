@@ -20,5 +20,8 @@
   },
   "menuColor": "default",
   "menuAccent": "subtle",
-  "registries": {}
+  "registries": {
+      "@vengeance": "https://www.vengenceui.com/r/{name}.json",
+      
+  }
 }

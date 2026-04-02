@@ -207,5 +207,5 @@ export const FOUNDER_COMPANIES = [
 
 export const HERO_CONTENT = {
   tagline: "A Better Way to Prepare",
-  description: "Tech interview roadmaps trusted by engineers at Google, Meta, OpenAI, and other top tech companies.",
+  description: "Resources for tech interviews trusted by engineers at Google, Meta, OpenAI, and other top tech companies.",
 }

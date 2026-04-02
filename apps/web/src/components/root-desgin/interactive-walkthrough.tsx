@@ -58,14 +58,14 @@ export function InteractiveWalkthrough() {
   useEffect(() => () => { if (intervalRef.current) clearInterval(intervalRef.current) }, [])
 
   return (
-    <div className="border-2 border-dashed border-[#CBD5E1] bg-white p-5">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="flex h-[340px] flex-col border-2 border-dashed border-[#CBD5E1] bg-white p-4">
+      <div className="mb-3 flex items-center justify-between">
         <span className="text-sm font-bold text-[#2563EB]" style={{ fontFamily: "Caveat, cursive" }}>Two Sum — Interactive Walkthrough</span>
         <span className="text-[10px] text-[#94A3B8]">Step {step + 1}/{WALKTHROUGH_STEPS.length}</span>
       </div>
 
       {/* Array visualization */}
-      <div className="mb-3">
+      <div className="mb-2.5">
         <p className="mb-1 text-[10px] uppercase tracking-wider text-[#94A3B8]">nums</p>
         <div className="flex gap-0">
           {TWO_SUM_NUMS.map((n, idx) => {
@@ -75,7 +75,7 @@ export function InteractiveWalkthrough() {
             return (
               <div key={idx} className="flex flex-col items-center">
                 <div
-                  className="flex size-10 items-center justify-center border-2 text-sm font-bold transition-colors"
+                  className="flex size-9 items-center justify-center border-2 text-sm font-bold transition-colors"
                   style={{
                     borderColor: highlight ? "#2563EB" : "#CBD5E1",
                     backgroundColor: highlight ? "rgba(37,99,235,0.08)" : "transparent",
@@ -94,14 +94,14 @@ export function InteractiveWalkthrough() {
       </div>
 
       {/* Target */}
-      <div className="mb-3 flex items-center gap-3">
+      <div className="mb-2.5 flex items-center gap-3">
         <span className="text-[10px] uppercase tracking-wider text-[#94A3B8]">target</span>
-        <span className="border-2 border-dashed border-[#CBD5E1] bg-[#FAFAFA] px-3 py-1 text-sm font-bold text-[#1E293B]">{TWO_SUM_TARGET}</span>
+        <span className="border-2 border-dashed border-[#CBD5E1] bg-[#FAFAFA] px-3 py-0.5 text-sm font-bold text-[#1E293B]">{TWO_SUM_TARGET}</span>
       </div>
 
       {/* Seen hashset */}
-      <div className="mb-3">
-        <p className="mb-1 text-[10px] uppercase tracking-wider text-[#94A3B8]">seen hashset</p>
+      <div className="mb-2.5">
+        <p className="mb-1 text-[10px] uppercase tracking-wider text-[#94A3B8]">seen hashmap</p>
         <div className="flex gap-1">
           {Object.keys(current.seen).length === 0 ? (
             <span className="text-xs text-[#94A3B8]" style={{ fontFamily: "Caveat, cursive" }}>{"{ empty }"}</span>
@@ -117,7 +117,7 @@ export function InteractiveWalkthrough() {
 
       {/* Message */}
       <div
-        className="mb-4 p-2 text-xs"
+        className="mb-3 flex-1 p-2 text-xs leading-relaxed"
         style={{
           borderLeftWidth: "3px",
           borderLeftStyle: "solid",
@@ -139,9 +139,9 @@ export function InteractiveWalkthrough() {
         </button>
         <button
           onClick={playing ? pause : play}
-          className="flex size-10 items-center justify-center border-2 border-[#2563EB] bg-[#2563EB] text-white transition-colors hover:bg-[#1D4ED8]"
+          className="flex size-9 items-center justify-center border-2 border-[#2563EB] bg-[#2563EB] text-white transition-colors hover:bg-[#1D4ED8]"
         >
-          {playing ? <Pause className="size-4" /> : <Play className="size-4" />}
+          {playing ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
         </button>
         <button
           onClick={() => setStep((s) => Math.min(s + 1, WALKTHROUGH_STEPS.length - 1))}
@@ -149,30 +149,6 @@ export function InteractiveWalkthrough() {
         >
           <SkipForward className="size-3.5" />
         </button>
-      </div>
-
-      {/* Code snippet */}
-      <div className="mt-4 border-t border-dashed border-[#CBD5E1] pt-3">
-        <div className="flex gap-2 border-b border-[#E2E8F0] pb-1">
-          {["Python", "Java", "C++"].map((lang, i) => (
-            <span
-              key={lang}
-              className="cursor-pointer text-[10px] font-medium transition-colors"
-              style={{ color: i === 0 ? "#2563EB" : "#94A3B8", borderBottom: i === 0 ? "2px solid #2563EB" : "none", paddingBottom: "2px" }}
-            >
-              {lang}
-            </span>
-          ))}
-        </div>
-        <pre className="mt-2 text-[11px] leading-relaxed text-[#475569]">
-          <code>{`def twoSum(nums, target):
-    seen = {}
-    for i, n in enumerate(nums):
-        comp = target - n
-        if comp in seen:
-            return [seen[comp], i]
-        seen[n] = i`}</code>
-        </pre>
       </div>
     </div>
   )
