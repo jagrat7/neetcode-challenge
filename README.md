@@ -4,13 +4,13 @@ This project was created as a bet for [NeetCode Challenge](https://x.com/neetcod
 
 
 
-<video src="./docs/video.mp4" width="100%" controls></video>
+![Demo Preview](./docs/video.mp4)
 
-# Additional Information
+### Additional Information
 I made 2 variants, one in the root route and an alternative in `/1`
 
 
-## Local Setup
+### Local Setup
 
 First, install the dependencies:
 
