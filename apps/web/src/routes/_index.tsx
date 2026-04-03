@@ -7,6 +7,7 @@ import { CoursesSection } from "@/components/root-desgin/courses-section"
 import { FounderSection } from "@/components/root-desgin/founder-section"
 import { Footer } from "@/components/root-desgin/footer"
 import { Navbar } from "@/components/root-desgin/navbar"
+import { MobileCheck } from "@/components/root-desgin/mobile-check"
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -17,20 +18,22 @@ export function meta({}: Route.MetaArgs) {
 
 export default function WhiteboardLanding() {
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA] text-[#1E293B]" style={{ fontFamily: "Inter, sans-serif" }}>
-      <div className="relative z-10">
-        <Navbar />
-        <main>
-          <HeroSection />
-          {/* <ArrayTopicStrip /> */}
-          <FeaturesSection />
-          <CoursesSection />
-          <CompanyLogosSection />
-          <TestimonialsSection />
-          <FounderSection />
-        </main>
-        <Footer />
+    <MobileCheck>
+      <div className="relative min-h-screen bg-[#FAFAFA] text-[#1E293B]" style={{ fontFamily: "Inter, sans-serif" }}>
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <HeroSection />
+            {/* <ArrayTopicStrip /> */}
+            <FeaturesSection />
+            <CoursesSection />
+            <CompanyLogosSection />
+            <TestimonialsSection />
+            <FounderSection />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </MobileCheck>
   )
 }
