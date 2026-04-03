@@ -2,13 +2,9 @@
 
 This project was created as a bet for [NeetCode Challenge](https://x.com/neetcode1/status/2038644001553997914?s=20). The code is **not safe for human eyes**. It was made purely with vibes and with an intention to create a mock.
 
-
-
-![Demo Preview](./docs/video.mp4)
-
-### Additional Information
 I made 2 variants, one in the root route and an alternative in `/1`
-
+- [main-demo](https://neet-challenge.vercel.app/)
+- [1](https://neet-challenge.vercel.app/1)
 
 ### Local Setup
 
